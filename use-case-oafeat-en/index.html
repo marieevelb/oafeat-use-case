@@ -6273,9 +6273,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Module importation</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">statistics</span> <span class="k">as</span> <span class="nn">stats</span>
+
 <span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
-<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span><span class="p">,</span> <span class="n">osr</span><span class="p">,</span> <span class="n">gdal</span>
-<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">owslib.ogcapi.features</span> <span class="kn">import</span> <span class="n">Features</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span><span class="p">,</span> <span class="n">osr</span>
 </pre></div>
 
         </div>
@@ -6293,13 +6295,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="o">-</span><span class="mf">122.0899412</span>
-<span class="n">long</span> <span class="o">=</span> <span class="mf">49.1373764</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="mf">49.162676</span>
+<span class="n">long</span> <span class="o">=</span> <span class="o">-</span><span class="mf">121.958943</span>
 <span class="n">buffer</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#km</span>
+<span class="n">numMonths</span> <span class="o">=</span> <span class="mi">3</span>
 
-<span class="n">enddate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-<span class="c1">###</span>
-<span class="n">enddate</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Prefered projection</span>
+<span class="c1"># NAD83 / Statistics Canada Lambert</span>
+<span class="n">projection</span> <span class="o">=</span> <span class="mi">3347</span>
 </pre></div>
 
         </div>
@@ -6316,15 +6319,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># bbox</span>
-<span class="n">bbox</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">lat</span><span class="o">-</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">long</span><span class="o">-</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">lat</span><span class="o">+</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">long</span><span class="o">+</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="si">}</span><span class="s1">&#39;</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Bbox a little bigger than buffer size (1 km ≈ 0.01°)</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="o">-</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="p">),</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="o">-</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="p">),</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">long</span><span class="o">+</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="p">),</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">lat</span><span class="o">+</span><span class="p">(</span><span class="n">buffer</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="p">)</span>
+       <span class="p">]</span>
 
-<span class="c1"># time</span>
-<span class="n">startdate</span> <span class="o">=</span> <span class="n">enddate</span> <span class="o">-</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">startdate</span> <span class="o">=</span> <span class="n">startdate</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">startdate</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">enddate</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="c1">###</span>
-<span class="n">time</span> <span class="o">=</span> <span class="s1">&#39;2012-04-01&#39;</span>
+<span class="c1"># Time</span>
+<span class="n">endDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+<span class="n">endDate</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span> <span class="c1"># Available data to test code</span>
+<span class="n">startDate</span> <span class="o">=</span> <span class="n">endDate</span> <span class="o">-</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">numMonths</span><span class="p">)</span>
+<span class="n">startDate</span> <span class="o">=</span> <span class="n">startDate</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">startDate</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">endDate</span><span class="si">}</span><span class="s1">&#39;</span>
 </pre></div>
 
         </div>
@@ -6341,19 +6348,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;*/*&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="n">params</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;limit&#39;</span><span class="p">,</span> <span class="s1">&#39;10000&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;bbox&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://geo.weather.gc.ca/geomet/features/collections/hydrometric-daily-mean/items&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="n">oafeat</span> <span class="o">=</span> <span class="n">Features</span><span class="p">(</span><span class="s1">&#39;https://geo.weather.gc.ca/geomet/features&#39;</span><span class="p">)</span>
+<span class="n">stationData</span> <span class="o">=</span> <span class="n">oafeat</span><span class="o">.</span><span class="n">collection_items</span><span class="p">(</span><span class="s1">&#39;hydrometric-stations&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">STATUS_EN</span><span class="o">=</span><span class="s1">&#39;Active&#39;</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -6370,13 +6366,57 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Set the driver (optional)</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Set the driver</span>
 <span class="n">driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GeoJSON&#39;</span><span class="p">)</span>
 
-<span class="c1"># Create a datasource</span>
-<span class="n">dataSource</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># 0 means read-only. 1 means writeable.</span>
+<span class="c1"># Create a datasource and get the layer</span>
+<span class="n">stationData</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">stationData</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">)</span>
+<span class="n">dataSource</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">stationData</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># 0 means read-only. 1 means writeable.</span>
 <span class="n">layer</span> <span class="o">=</span> <span class="n">dataSource</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
-<span class="n">layer</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
+
+<span class="c1"># Identify input spatial reference system</span>
+<span class="n">srsInput</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">GetSpatialRef</span><span class="p">()</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">srsInput</span><span class="p">))</span>
+<span class="n">epsg</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">srsInput</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span>
+
+<span class="c1"># Spatial reference system used to project data</span>
+<span class="n">srsProjected</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">srsProjected</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+
+<span class="c1"># Transformation from input srs to NAD83 / Statistics Canada Lambert</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">srsInput</span><span class="p">,</span> <span class="n">srsProjected</span><span class="p">)</span>
+
+<span class="c1"># Create a buffer to select stations</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">)</span>
+<span class="n">point</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="n">point</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
+<span class="n">pointBuffer</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">buffer</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># The value must be in meters</span>
+
+<span class="c1"># Select the stations in the buffer zone</span>
+<span class="n">stations</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">layer</span><span class="p">:</span>
+    <span class="n">geom</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">GetGeometryRef</span><span class="p">()</span><span class="o">.</span><span class="n">Clone</span><span class="p">()</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">Intersects</span><span class="p">(</span><span class="n">pointBuffer</span><span class="p">):</span>
+        <span class="n">stations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;STATION_NUMBER&#39;</span><span class="p">))</span>
+</pre></div>
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+    
+    <div class="inner_cell">
+        
+        
+        <div class="input_area">
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">stations</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -6390,15 +6430,80 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>21</pre>
+<pre>18</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+    
+    <div class="inner_cell">
+        
+        
+        <div class="input_area">
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="n">waterLevel</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">:</span>
+    <span class="n">hydroData</span> <span class="o">=</span> <span class="n">oafeat</span><span class="o">.</span><span class="n">collection_items</span><span class="p">(</span>
+        <span class="s1">&#39;hydrometric-daily-mean&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+        <span class="n">STATION_NUMBER</span><span class="o">=</span><span class="n">station</span>
+    <span class="p">)</span>
+    <span class="n">levelValues</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">hydroData</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]:</span>
+        <span class="n">levelValues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;LEVEL&#39;</span><span class="p">])</span>
+    <span class="n">waterLevel</span><span class="p">[</span><span class="n">station</span><span class="p">]</span> <span class="o">=</span> <span class="n">levelValues</span>
+</pre></div>
+
+        </div>
+    </div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+    
+    <div class="inner_cell">
+        
+        
+        <div class="input_area">
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">waterLevel</span><span class="p">[</span><span class="s1">&#39;08MH147&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">waterLevel</span><span class="p">[</span><span class="s1">&#39;08MH147&#39;</span><span class="p">]))</span>
+</pre></div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3.116451612082861
+3.1070001125335693
+</pre>
+</div>
 </div>
 
 </div>
