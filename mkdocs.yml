@@ -2,6 +2,7 @@ site_name: OAFeat use case
 
 nav:
 - Accueil: index.md
+- Plot: plot.md
 - Use case: use-case-oafeat-en.ipynb
 
 plugins:
