@@ -5,5 +5,5 @@ dependencies:
   - gdal
   - owslib
   - pandas
-  - plotly plotly
+  - plotly
   - python-dateutil
