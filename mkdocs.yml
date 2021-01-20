@@ -5,5 +5,4 @@ nav:
 - Use case: use-case-oafeat-en.ipynb
 
 plugins:
-  - mkdocs-jupyter:
-      execute: True
+  - mkdocs-jupyter
