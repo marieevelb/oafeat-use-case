@@ -1,0 +1,8 @@
+name: oafeat-usecase-env
+
+dependencies:
+  - python=3.9
+  - gdal
+  - owslib
+  - pandas
+  - python-dateutil

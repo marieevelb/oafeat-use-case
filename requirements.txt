@@ -1,4 +1,0 @@
-GDAL
-OWSLib
-pandas
-python-dateutil
