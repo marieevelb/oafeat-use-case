@@ -3,6 +3,7 @@ name: oafeat-usecase-env
 dependencies:
   - python=3.9
   - gdal
+  - ipywidgets
   - owslib
   - pandas
   - plotly
