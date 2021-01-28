@@ -1,7 +1,7 @@
 site_name: OAFeat use case
 
 nav:
-- Accueil: index.md
+- Home page: index.md
 - Use case: use-case-oafeat-en.ipynb
 
 plugins:
