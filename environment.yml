@@ -2,9 +2,12 @@ name: oafeat-usecase-env
 
 dependencies:
   - python=3.9
+  - cartopy
   - gdal
   - ipyleaflet
   - ipywidgets
+  - matplotlib
+  - numpy
   - owslib
   - pandas
   - plotly
