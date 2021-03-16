@@ -6240,7 +6240,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <h1 id="use-case-tracking-water-level-with-geomet-ogc-api">Use case: Tracking water level with GeoMet-OGC-API<a class="anchor-link" href="#Use-case:-Tracking-water-level-with-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON file can then be used for display or further data processing. This use case will show you how you can:</p>
 <ul>
 <li>Query and retrieve vector geospatial data from <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> with <a href="https://www.python.org/">Python</a></li>
-<li>Process time series data to obtain descriptive statistics for a chosen temporal unit</li>
 <li>Display time series data in graphic and tabular format</li>
 <li>Create an interactive map to display geospatial data</li>
 </ul>
@@ -6248,9 +6247,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p>To run the entire notebook, click on the ⏩️ symbol or select the Cell -&gt; Run All option in the menu bar.</p>
 <h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
-<li>The daily water level of the past 3 months for all hydrometric stations located within 100 km of the city of Chilliwack</li>
-<li>Graphic and tabular views that present the provisional daily mean water level of the past 3 months</li>
-<li>A interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations</li>
+<li>The daily water level of a 3 months period for all hydrometric stations located within 100 km of the city of Chilliwack</li>
+<li>Graphic and tabular views that present the provisional daily mean water level of that 3 months period</li>
+<li>An interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations</li>
 </ul>
 <p>To achieve this, the first step is to import the necessary Python modules and to select the desired request parameters.</p>
 
@@ -6342,8 +6341,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="p">]</span>
 
 <span class="c1"># Time</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>  <span class="c1"># Available data to test the code</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
 <span class="n">start_date</span> <span class="o">=</span> <span class="n">end_date</span> <span class="o">-</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
@@ -6451,8 +6449,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data of the past three months can be retrieved for each station. The provisional daily mean water level will then be calculated for each day of the 3 months period.</p>
-<p>The provisional daily mean water level of the past 3 months will be used to create a data frame of the historical daily water level for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create an interactive graphic and tabular view of the historical daily water level of the hydrometric monitoring stations located within 100 km of Chilliwack. The most recent provisional daily mean water level of all the stations will also be compiled in a single data frame that will be used to display the most recent water level data on an interactive map.</p>
+<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data for a 3 months period can be retrieved for each station.</p>
+<p>The daily mean water level of the 3 months period will be used to create a data frame of the historical daily water level for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create interactive graphic and tabular views of the historical daily water level of the hydrometric monitoring stations located within 100 km of Chilliwack.</p>
 <p>Stations that do not have water level data available in the desired time period or for the current date will be removed from the dataset.</p>
 
 </div>
@@ -6460,7 +6458,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
     
     <div class="inner_cell">
         
@@ -6561,7 +6559,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
     
     <div class="inner_cell">
         
@@ -6610,35 +6608,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="05d6332f-7f91-460d-b5f8-9edccb160521"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#05d6332f-7f91-460d-b5f8-9edccb160521');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5fc4c930a5ac41d195a966a3b466b3ac", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -6650,7 +6619,7 @@ var element = $('#05d6332f-7f91-460d-b5f8-9edccb160521');
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
     
     <div class="inner_cell">
         
@@ -6691,35 +6660,6 @@ var element = $('#05d6332f-7f91-460d-b5f8-9edccb160521');
 
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="b20f6add-ddb8-44be-ae11-7bcffcb720c7"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#b20f6add-ddb8-44be-ae11-7bcffcb720c7');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0396b25e7a824fef8a17559e18367fb0", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -6731,7 +6671,7 @@ var element = $('#b20f6add-ddb8-44be-ae11-7bcffcb720c7');
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
     
     <div class="inner_cell">
         
@@ -6794,40 +6734,11 @@ var element = $('#b20f6add-ddb8-44be-ae11-7bcffcb720c7');
 
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="2b8a242a-8988-466a-88df-19d64b41f174"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#2b8a242a-8988-466a-88df-19d64b41f174');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "2daeab6315704ce68a82c72bc04e7362", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water level of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve geospatial data from GeoMet-OGC-API, to calculate descriptive statistics for the temporal units of your choice for a time series and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
+<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water level of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve geospatial data from GeoMet-OGC-API and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
 
 </div>
 </div>
