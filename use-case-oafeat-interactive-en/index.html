@@ -37,7 +37,7 @@
                                 <a href=".." class="nav-link">Home page</a>
                             </li>
                             <li class="navitem">
-                                <a href="../use-case-oafeat-en-static/" class="nav-link">Use case</a>
+                                <a href="../use-case-oafeat-script-en/" class="nav-link">Use case</a>
                             </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">Interactive use case</a>
@@ -46,7 +46,7 @@
 
                     <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../use-case-oafeat-en-static/" class="nav-link">
+                                <a rel="prev" href="../use-case-oafeat-script-en/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -6247,23 +6247,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="../use-case-oafeat-en/">En français</a></p>
+<p><a href="../use-case-oafeat-interactive-fr.ipynb">En français</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
-<p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python</p>
-<h1 id="use-case-tracking-water-level-with-geomet-ogc-api">Use case: Tracking water level with GeoMet-OGC-API<a class="anchor-link" href="#Use-case:-Tracking-water-level-with-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://geo.weather.gc.ca/geomet/features/?f=html">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in <a href="https://geo.weather.gc.ca/geomet/features/?f=html">GeoMet-OGC-API</a> offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON file can than be used for display or further data processing. This use case will show you how you can:</p>
+<p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python &gt; Interactive version</p>
+<h1 id="use-case-tracking-water-level-with-geomet-ogc-api">Use case: Tracking water level with GeoMet-OGC-API<a class="anchor-link" href="#Use-case:-Tracking-water-level-with-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON file can then be used for display or further data processing. This use case will show you how you can:</p>
 <ul>
-<li>Query and retrieve vector geospatial data from <a href="https://geo.weather.gc.ca/geomet/features/?f=html">GeoMet-OGC-API</a> with <a href="https://www.python.org/">Python</a></li>
+<li>Query and retrieve vector geospatial data from <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> with <a href="https://www.python.org/">Python</a></li>
 <li>Process time series data to obtain descriptive statistics for a chosen temporal unit</li>
 <li>Display time series data in graphic and tabular format</li>
 <li>Create an interactive map to display geospatial data</li>
 </ul>
-<p>An <a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case-oafeat-en.ipynb">interactive version of this Jupyter Notebook is available</a></p>
-<p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case-oafeat-en.ipynb"><img src="https://img.shields.io/badge/Interactive%20version-binder-F5A252.svg?logo=data:image/png;base64,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" alt="badge"></a></p>
-<h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company activities. She would like to have:</p>
+<p>This use case comes in two different versions. This version is conceived to be used on Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values and interactive data visualization. As some libraries used in this version like ipyleaflet cannot be used outside of Jupyter Notebook, the other version of this use case presents a script that is tailored to be run in a terminal or an IDE.</p>
+<h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
 <li>The daily water level of the past 3 months for all hydrometric stations located within 100 km of the city of Chilliwack</li>
 <li>Graphic and tabular views that present the provisional daily mean water level of the past 3 months</li>
-<li>A web map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations</li>
+<li>A interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations</li>
 </ul>
 <p>To achieve this, the first step is to import the necessary Python modules and to select the desired request parameters.</p>
 
@@ -6319,13 +6318,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="n">lat</span> <span class="o">=</span> <span class="mf">49.162676</span>
 <span class="n">long</span> <span class="o">=</span> <span class="o">-</span><span class="mf">121.958943</span>
 
-<span class="c1"># Buffer size in kilometers</span>
+<span class="c1"># Buffer size in kilometres</span>
 <span class="n">buffer</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="c1"># Number of months used to analyse historical data</span>
+<span class="c1"># Number of months used to analyze historical data</span>
 <span class="n">num_months</span> <span class="o">=</span> <span class="mi">3</span>
 
-<span class="c1"># ESPG code of the prefered projection to create the buffer</span>
+<span class="c1"># ESPG code of the preferred projection to create the buffer</span>
 <span class="c1"># NAD83 / Statistics Canada Lambert</span>
 <span class="n">projection</span> <span class="o">=</span> <span class="mi">3347</span>
 </pre></div>
@@ -6370,7 +6369,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Than, the <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">hydrometric monitoring stations data</a> available on GeoMet-OGC-API can be retrieved with the <a href="https://geopython.github.io/OWSLib/">OWSLib package</a>. As the bounding box parameter is not as precise as a round buffer, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> can be used to select only the hydrometric stations that are strictly inside a 100 km radius from Chilliwack.</p>
+<p>Then, the <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">hydrometric monitoring stations data</a> available on GeoMet-OGC-API can be retrieved with the <a href="https://geopython.github.io/OWSLib/">OWSLib package</a>. As the bounding box parameter is not as precise as a round buffer, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> can be used to select only the hydrometric stations that are strictly inside a 100 km radius from Chilliwack.</p>
 
 </div>
 </div>
@@ -6384,7 +6383,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Retrieval of hydrometric stations data</span>
-<span class="n">oafeat</span> <span class="o">=</span> <span class="n">Features</span><span class="p">(</span><span class="s2">&quot;https://geo.weather.gc.ca/geomet/features&quot;</span><span class="p">)</span>
+<span class="n">oafeat</span> <span class="o">=</span> <span class="n">Features</span><span class="p">(</span><span class="s2">&quot;https://api.weather.gc.ca/&quot;</span><span class="p">)</span>
 <span class="n">station_data</span> <span class="o">=</span> <span class="n">oafeat</span><span class="o">.</span><span class="n">collection_items</span><span class="p">(</span>
     <span class="s2">&quot;hydrometric-stations&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">STATUS_EN</span><span class="o">=</span><span class="s2">&quot;Active&quot;</span>
 <span class="p">)</span>
@@ -6464,9 +6463,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data of the past three months can be retrieved for each station. The provisional daily mean water level will than be calculated for each day of the 3 months period.</p>
+<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data of the past three months can be retrieved for each station. The provisional daily mean water level will then be calculated for each day of the 3 months period.</p>
 <p>The provisional daily mean water level of the past 3 months will be used to create a data frame of the historical daily water level for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create an interactive graphic and tabular view of the historical daily water level of the hydrometric monitoring stations located within 100 km of Chilliwack. The most recent provisional daily mean water level of all the stations will also be compiled in a single data frame that will be used to display the most recent water level data on an interactive map.</p>
-<p>Stations that do note have water level data available in the desired time period or for the current date will be removed from the dataset.</p>
+<p>Stations that do not have water level data available in the desired time period or for the current date will be removed from the dataset.</p>
 
 </div>
 </div>
@@ -6495,10 +6494,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="n">hydro_data</span> <span class="o">=</span> <span class="n">oafeat</span><span class="o">.</span><span class="n">collection_items</span><span class="p">(</span>
         <span class="s2">&quot;hydrometric-daily-mean&quot;</span><span class="p">,</span>
         <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
-        <span class="n">time</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">datetime</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="n">STATION_NUMBER</span><span class="o">=</span><span class="n">station</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1"># Creation of a dataframe if there is data for the chosen time period</span>
+    <span class="c1"># Creation of a data frame if there is data for the chosen time period</span>
     <span class="k">if</span> <span class="n">hydro_data</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]:</span>
         <span class="c1"># Creation of a dictionary in a format compatible with Pandas</span>
         <span class="n">historical_data_format</span> <span class="o">=</span> <span class="p">[</span>
@@ -6509,7 +6508,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">hydro_data</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
         <span class="p">]</span>
-        <span class="c1"># Creation of the dataframe</span>
+        <span class="c1"># Creation of the data frame</span>
         <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
             <span class="n">historical_data_format</span><span class="p">,</span>
             <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
@@ -6522,10 +6521,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="p">],</span>
         <span class="p">)</span>
         <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="c1"># Adding the dataframe to the hydrometric data dictionary</span>
+        <span class="c1"># Adding the data frame to the hydrometric data dictionary</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
             <span class="c1"># Removing any rows without water level data at the</span>
-            <span class="c1"># end of the dataframe</span>
+            <span class="c1"># end of the data frame</span>
             <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
                 <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
                     <span class="n">historical_data_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
@@ -6535,7 +6534,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
                 <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="n">historical_data_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;DATE&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="c1"># Adding the dataframe to the dictionary</span>
+            <span class="c1"># Adding the data frame to the dictionary</span>
             <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span> <span class="o">=</span> <span class="n">historical_data_df</span>
         <span class="c1"># If all the data is NaN, the station will be removed from the dataset</span>
         <span class="k">else</span><span class="p">:</span>
@@ -6636,13 +6635,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="b8bcc04e-283a-4137-b9bc-d22a23137f1a"></div>
+<div id="3747ecab-b9e5-4893-9911-93e718826d28"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#b8bcc04e-283a-4137-b9bc-d22a23137f1a');
+var element = $('#3747ecab-b9e5-4893-9911-93e718826d28');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "646bd7338b0c4956a75897cc3644d017", "version_major": 2, "version_minor": 0}
+{"model_id": "6cad64e4cab34dfbbc5d2e8162df3060", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6717,13 +6716,13 @@ var element = $('#b8bcc04e-283a-4137-b9bc-d22a23137f1a');
 
  
  
-<div id="665452ce-eef0-40c3-860b-0dbbfc4e158c"></div>
+<div id="8ddee52f-dfac-4d2d-b700-6f9c7c065fcb"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#665452ce-eef0-40c3-860b-0dbbfc4e158c');
+var element = $('#8ddee52f-dfac-4d2d-b700-6f9c7c065fcb');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "fdfd2e90127f4cbd990c54ee2d3008b4", "version_major": 2, "version_minor": 0}
+{"model_id": "73da329d8fb64c4194708fbe24e27b49", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6820,13 +6819,13 @@ var element = $('#665452ce-eef0-40c3-860b-0dbbfc4e158c');
 
  
  
-<div id="e2d6fb4c-18b4-46d2-b600-49f82325812c"></div>
+<div id="7d8ec4c9-9819-41a4-8248-8475447c9ae4"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#e2d6fb4c-18b4-46d2-b600-49f82325812c');
+var element = $('#7d8ec4c9-9819-41a4-8248-8475447c9ae4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "df71e4fb431d49f38e64add88b8bc29a", "version_major": 2, "version_minor": 0}
+{"model_id": "6b25b6117bb94ea49a8fc026799d6a86", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6839,7 +6838,7 @@ var element = $('#e2d6fb4c-18b4-46d2-b600-49f82325812c');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water level of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve geospatial data from GeoMet-OGC-API, to calculate descriptive statistics for the temporal units of your choice for a time series and to display data in different interactive format (plot, table and web map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
+<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water level of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve geospatial data from GeoMet-OGC-API, to calculate descriptive statistics for the temporal units of your choice for a time series and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
 
 </div>
 </div>
