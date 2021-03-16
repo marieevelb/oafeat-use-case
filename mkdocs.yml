@@ -2,8 +2,8 @@ site_name: OAFeat use case
 
 nav:
 - Home page: index.md
-- Use case: use-case-oafeat-en-static.ipynb
-- Interactive use case: use-case-oafeat-en.ipynb
+- Use case: use-case-oafeat-script-en.ipynb
+- Interactive use case: use-case-oafeat-interactive-en.ipynb
 
 plugins:
   - mkdocs-jupyter
