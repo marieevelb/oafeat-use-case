@@ -6248,8 +6248,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
 <li>The daily water level of a 3 months period for all hydrometric stations located within 100 km of the city of Chilliwack</li>
-<li>Graphic and tabular views that present the provisional daily mean water level of that 3 months period</li>
-<li>An interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent provisional daily mean water level of these stations</li>
+<li>Graphic and tabular views that present the daily mean water level of that 3 months period</li>
+<li>An interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent daily mean water level of these stations</li>
 </ul>
 <p>To achieve this, the first step is to import the necessary Python modules and to select the desired request parameters.</p>
 
@@ -6458,7 +6458,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
     
     <div class="inner_cell">
         
@@ -6538,8 +6538,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="c1"># Raising an error if no station is left in the list</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">stations</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;No water level data is available in the last </span><span class="si">{</span><span class="n">num_months</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="o">+</span> <span class="s2">&quot; months for the selected hydrometric stations.&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;No water level data is available for this </span><span class="si">{</span><span class="n">num_months</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">+</span> <span class="s2">&quot; months period for the selected hydrometric stations.&quot;</span>
     <span class="p">)</span>
 </pre></div>
 
@@ -6559,7 +6559,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
     
     <div class="inner_cell">
         
@@ -6608,6 +6608,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="028c635b-7c46-4765-9b4f-98d09d6b3853"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#028c635b-7c46-4765-9b4f-98d09d6b3853');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "23f910c1eacb4497b52a0865ba07c4a9", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -6619,7 +6648,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
     
     <div class="inner_cell">
         
@@ -6660,6 +6689,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="dc086a94-9ffa-4dc8-9185-73f2109a5d9d"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#dc086a94-9ffa-4dc8-9185-73f2109a5d9d');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "c55020590de049ab9eae5eefbd1c5029", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -6671,7 +6729,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
     
     <div class="inner_cell">
         
@@ -6732,6 +6790,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         </div>
     </div>
 
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="521570d5-80d3-419d-a806-0b55bca78f42"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#521570d5-80d3-419d-a806-0b55bca78f42');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1a64ff6597f24d57b0b802a8764de52c", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+</div>
 </div>
 
 </div>
