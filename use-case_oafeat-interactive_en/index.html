@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Interactive use case - OAFeat use case</title>
+        <title>Use case oafeat interactive en - OAFeat use case</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -37,24 +37,11 @@
                                 <a href=".." class="nav-link">Home page</a>
                             </li>
                             <li class="navitem">
-                                <a href="../use-case-oafeat-script-en/" class="nav-link">Use case</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Interactive use case</a>
+                                <a href="../use-case_oafeat-script_en/" class="nav-link">Use case</a>
                             </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a rel="prev" href="../use-case-oafeat-script-en/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -6247,9 +6234,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="../use-case-oafeat-interactive-fr.ipynb">En français</a></p>
+<p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_fr.ipynb">En français</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
-<p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python &gt; Interactive version</p>
+<p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python (interactive version)</p>
 <h1 id="use-case-tracking-water-level-with-geomet-ogc-api">Use case: Tracking water level with GeoMet-OGC-API<a class="anchor-link" href="#Use-case:-Tracking-water-level-with-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON file can then be used for display or further data processing. This use case will show you how you can:</p>
 <ul>
 <li>Query and retrieve vector geospatial data from <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> with <a href="https://www.python.org/">Python</a></li>
@@ -6257,7 +6244,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <li>Display time series data in graphic and tabular format</li>
 <li>Create an interactive map to display geospatial data</li>
 </ul>
-<p>This use case comes in two different versions. This version is conceived to be used on Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values and interactive data visualization. As some libraries used in this version like ipyleaflet cannot be used outside of Jupyter Notebook, the other version of this use case presents a script that is tailored to be run in a terminal or an IDE.</p>
+<p>This use case comes in two different versions. This version is conceived to be used on Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values, an interactive plot with a variety of controls and an interactive map based on Leaflet. As some libraries used in this version like ipyleaflet cannot be used outside of Jupyter Notebook, the <a href="https://marieevelb.github.io/oafeat-use-case/use-case-oafeat-script-en/">other version of this use case</a> presents a script that is tailored to be run in a terminal or an IDE.</p>
+<p>To run the entire notebook, click on the ⏩️ symbol or select the Cell -&gt; Run All option in the menu bar.</p>
 <h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
 <li>The daily water level of the past 3 months for all hydrometric stations located within 100 km of the city of Chilliwack</li>
@@ -6534,6 +6522,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
                 <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="n">historical_data_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;DATE&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">historical_data_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">date</span>
             <span class="c1"># Adding the data frame to the dictionary</span>
             <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span> <span class="o">=</span> <span class="n">historical_data_df</span>
         <span class="c1"># If all the data is NaN, the station will be removed from the dataset</span>
@@ -6635,13 +6624,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="3747ecab-b9e5-4893-9911-93e718826d28"></div>
+<div id="25326f0c-8883-423f-a8ac-21ff9e237124"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#3747ecab-b9e5-4893-9911-93e718826d28');
+var element = $('#25326f0c-8883-423f-a8ac-21ff9e237124');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6cad64e4cab34dfbbc5d2e8162df3060", "version_major": 2, "version_minor": 0}
+{"model_id": "5fc4c930a5ac41d195a966a3b466b3ac", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6716,13 +6705,13 @@ var element = $('#3747ecab-b9e5-4893-9911-93e718826d28');
 
  
  
-<div id="8ddee52f-dfac-4d2d-b700-6f9c7c065fcb"></div>
+<div id="9f1fee32-a34d-410c-beaa-0c84ac1bc35b"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#8ddee52f-dfac-4d2d-b700-6f9c7c065fcb');
+var element = $('#9f1fee32-a34d-410c-beaa-0c84ac1bc35b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "73da329d8fb64c4194708fbe24e27b49", "version_major": 2, "version_minor": 0}
+{"model_id": "0396b25e7a824fef8a17559e18367fb0", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6773,7 +6762,7 @@ var element = $('#8ddee52f-dfac-4d2d-b700-6f9c7c065fcb');
         <span class="n">html</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;br&gt;&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Station ID: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">STATION_NUMBER</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
-            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Timestamp: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Date: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Water level: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">LEVEL</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m&quot;</span>
         <span class="p">)</span>
 
@@ -6819,13 +6808,13 @@ var element = $('#8ddee52f-dfac-4d2d-b700-6f9c7c065fcb');
 
  
  
-<div id="7d8ec4c9-9819-41a4-8248-8475447c9ae4"></div>
+<div id="a01fa39f-057f-4314-8444-70f069830ac8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#7d8ec4c9-9819-41a4-8248-8475447c9ae4');
+var element = $('#a01fa39f-057f-4314-8444-70f069830ac8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6b25b6117bb94ea49a8fc026799d6a86", "version_major": 2, "version_minor": 0}
+{"model_id": "2daeab6315704ce68a82c72bc04e7362", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
