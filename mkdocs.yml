@@ -3,7 +3,6 @@ site_name: OAFeat use case
 nav:
 - Home page: index.md
 - Use case: use-case_oafeat-script_en.ipynb
-- Interactive use case: use-case_oafeat-interactive_en.ipynb
 
 plugins:
   - mkdocs-jupyter
