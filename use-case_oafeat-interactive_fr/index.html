@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Use case oafeat interactive en - OAFeat use case</title>
+        <title>Use case oafeat interactive fr - OAFeat use case</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -60,13 +60,13 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#use-case-tracking-water-level-with-geomet-ogc-api" class="nav-link">Use case: Tracking water level with GeoMet-OGC-API</a>
+            <li class="nav-item" data-level="1"><a href="#cas-dutilisation-suivi-du-niveau-de-leau-avec-geomet-ogc-api" class="nav-link">Cas d'utilisation: Suivi du niveau de l'eau avec GeoMet-OGC-API</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#creation-of-a-tool-to-track-water-level" class="nav-link">Creation of a tool to track water level</a>
+            <li class="nav-item" data-level="2"><a href="#creation-dun-outil-pour-suivre-levolution-du-niveau-de-leau" class="nav-link">Création d'un outil pour suivre l'évolution du niveau de l'eau</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -6234,24 +6234,24 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_fr.ipynb">En français</a></p>
+<p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_en.ipynb">In English</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
-<p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python (interactive version)</p>
-<h1 id="use-case-tracking-water-level-with-geomet-ogc-api">Use case: Tracking water level with GeoMet-OGC-API<a class="anchor-link" href="#Use-case:-Tracking-water-level-with-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON file can then be used for display or further data processing. This use case will show you how you can:</p>
+<p><a href="https://eccc-msc.github.io/open-data/readme_fr/">TdM</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_efr/">Aperçu de l'utilisation</a> &gt; Requêtes OGC API - Features avec Python (version interactive)</p>
+<h1 id="cas-dutilisation-suivi-du-niveau-de-leau-avec-geomet-ogc-api">Cas d'utilisation: Suivi du niveau de l'eau avec GeoMet-OGC-API<a class="anchor-link" href="#Cas-d'utilisation:-Suivi-du-niveau-de-l'eau-avec-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Les données hydrométriques du Service météorologique du Canada (SMC) et d'Environnement et Changement climatique Canada (ECCC) peuvent être facilement accédés via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. Les services web <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_fr/#ogc-api-features">OGC API - Features</a> disponibles dans <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> permettent d'effectuer des requêtes de données géospatiales vectorielles et de récupérer ces données en format GeoJSON. Les fichiers GeoJSON peuvent ensuite être utilisés directement pour réaliser des analyses et afficher les données sur des cartes ou peuvent être soumis à des étapes supplémentaires de traitement de données. Ce cas d'utilisation démontre comment:</p>
 <ul>
-<li>Query and retrieve vector geospatial data from <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> with <a href="https://www.python.org/">Python</a></li>
-<li>Display time series data in graphic and tabular format</li>
-<li>Create an interactive map to display geospatial data</li>
+<li>Effectuer des requêtes et récupérer des données géospatiales vectorielles disponibles dans <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> à l'aide de <a href="https://www.python.org/">Python</a></li>
+<li>Afficher des données de séries temporelles en format graphique et tabulaire</li>
+<li>Créer une carte interactive présentant les données géospatiales récupérées</li>
 </ul>
-<p>This use case comes in two different versions. This version is conceived to be used on Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values, an interactive plot with a variety of controls and an interactive map based on Leaflet. As some libraries used in this version like ipywidgets are not conceived to be used outside of Jupyter Notebook, the <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_en/">other version of this use case</a> presents a script that is tailored to be run in a terminal or an IDE.</p>
-<p>To run the entire notebook, click on the ⏩️ symbol or select the Cell -&gt; Run All option in the menu bar.</p>
-<h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
+<p>Ce cas d'utilisation est disponible en deux versions. Cette version-ci a été concue spécifiquement pour Jupyter Notebook et tire avantage du niveau supérieur d'interactivité offert par cette application. Elle comprend entre autres des menus déroulants pour sélectionner la valeur de certaines variables, un graphique interactif comportant une plus grande variété de fonctions et une carte interactive basée sur Leaflet. Comme certaines bibliothèques de programmation utilisées dans cette version telles que ipywidgets ne sont pas conçues pour être utilisées hors de Jupyter Notebook, <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_fr/">une autre version de ce cas d'utilisation</a> présente un script qui est adapté pour être exécuté directement dans un terminal ou dans un environnement de développement intégré.</p>
+<p>Pour exécuter l'entièreté de ce carnet, cliquez sur le symbole ⏩️ ou sélectionnez l'option Cell -&gt; Run All dans la barre de menu.</p>
+<h2 id="creation-dun-outil-pour-suivre-levolution-du-niveau-de-leau">Cr&#233;ation d'un outil pour suivre l'&#233;volution du niveau de l'eau<a class="anchor-link" href="#Cr&#233;ation-d'un-outil-pour-suivre-l'&#233;volution-du-niveau-de-l'eau">&#182;</a></h2><p>Cathy dirige une compagnie d'excursions en bateau et de sports nautiques à Chilliwack en Colombie-Britannique. Elle aimerait suivre le niveau de l'eau de certaines stations hydrométriques situés près de Chilliwack afin de guider la gestion des activités de sa copagnie. Elle aimerait obtenir:</p>
 <ul>
-<li>The daily water level of a 3 months period for all hydrometric stations located within 100 km of the city of Chilliwack</li>
-<li>Graphic and tabular views that present the daily mean water level of that 3 months period</li>
-<li>An interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent daily mean water level of these stations in the determined time period</li>
+<li>La moyenne journalière du niveau d'eau pour une période de 3 mois pour toutes les stations hydrométriques situées dans un rayon de 100 km de Chilliwack.</li>
+<li>Une vue graphique et tabulaire des moyennes journalières du niveau d'eau de cette période</li>
+<li>Une carte interactive présentant les stations hydrométriques situées dans un rayon de 100 km de Chilliwack et la moyenne journalière de niveau d'eau la plus récente de ces stations pour la période temporelle sélectionnée</li>
 </ul>
-<p>To achieve this, the first step is to import the necessary Python modules and to select the desired request parameters.</p>
+<p>Pour y arriver, la première étape est d'importer les modules Python nécessaires et de sélectionner les paramètres de requête désirés.</p>
 
 </div>
 </div>
@@ -6355,7 +6355,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Then, the <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">hydrometric monitoring stations data</a> available on GeoMet-OGC-API can be retrieved with the <a href="https://geopython.github.io/OWSLib/">OWSLib package</a>. As the bounding box parameter is not as precise as a round buffer, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> can be used to select only the hydrometric stations that are strictly inside a 100 km radius from Chilliwack.</p>
+<p>Ensuite, les <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">données des stations hydrométriques</a> disponibles sur GeoMet-OGC-API peuvent être récupérés à l'aide d'<a href="https://geopython.github.io/OWSLib/">OWSLib</a>. Comme l'utilisation d'une zone de délimitation à l'aide du paramètre <code>bbox</code> n'est pas aussi précis que l'utilisation d'une zone tampon ronde, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> peut être utilisé pour sélectionner uniquement les stations hydromtriques situées strictement dans un rayon de 100 km de Chilliwack.</p>
 
 </div>
 </div>
@@ -6449,8 +6449,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data for a 3 months period can be retrieved for each station.</p>
-<p>The daily mean water level of the 3 months period will be used to create a data frame of the historical daily water level for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create interactive graphic and tabular views of the historical daily water level of the hydrometric monitoring stations located within 100 km of Chilliwack. They will also be used to display the hydrometric stations on a map with their most recent daily water level data for the time period.</p>
+<p>Une fois les stations hydrométriques situées dans un rayon de 100 km de Chilliwack identifiées, les données de niveau d'eau pour la période de 3 mois peuvent êtres récupérées pour chaque station.</p>
+<p>Les moyennes journalières du niveau d'eau de la période de 3 mois sera utilisée pour créer une trame de données du niveau d'eau journalier historique pour chaque station à l'aide de <a href="https://pandas.pydata.org/">Pandas</a>. Pour faciliter la manipulation des données, l'ensemble des trames de données sera rassemblée dans un dictionnaire Python. Ces trames de données seront utilisées . These data frames will be used to create interactive graphic and tabular views of the historical daily water level of the hydrometric monitoring stations located within 100 km of Chilliwack.</p>
 <p>Stations that do not have water level data available in the desired time period or for the current date will be removed from the dataset.</p>
 
 </div>
@@ -6622,10 +6622,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="b8c727c3-973c-4bca-b087-638329dd6fd8"></div>
+<div id="e32d040d-a8be-4965-9adc-11a6107895c7"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#b8c727c3-973c-4bca-b087-638329dd6fd8');
+var element = $('#e32d040d-a8be-4965-9adc-11a6107895c7');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "23f910c1eacb4497b52a0865ba07c4a9", "version_major": 2, "version_minor": 0}
@@ -6703,10 +6703,10 @@ var element = $('#b8c727c3-973c-4bca-b087-638329dd6fd8');
 
  
  
-<div id="74c95e65-29aa-471e-8b5f-189b026f86a4"></div>
+<div id="a284270f-9ef7-4b01-a2d6-dc678f1413c1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#74c95e65-29aa-471e-8b5f-189b026f86a4');
+var element = $('#a284270f-9ef7-4b01-a2d6-dc678f1413c1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "c55020590de049ab9eae5eefbd1c5029", "version_major": 2, "version_minor": 0}
@@ -6806,10 +6806,10 @@ var element = $('#74c95e65-29aa-471e-8b5f-189b026f86a4');
 
  
  
-<div id="cbb786f9-513e-40eb-b44f-365741aa1ceb"></div>
+<div id="34bbabb8-3219-4d15-bc14-3163c2aadece"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#cbb786f9-513e-40eb-b44f-365741aa1ceb');
+var element = $('#34bbabb8-3219-4d15-bc14-3163c2aadece');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "1a64ff6597f24d57b0b802a8764de52c", "version_major": 2, "version_minor": 0}
