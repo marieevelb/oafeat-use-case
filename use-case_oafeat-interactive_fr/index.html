@@ -39,6 +39,9 @@
                             <li class="navitem">
                                 <a href="../use-case_oafeat-script_en/" class="nav-link">Use case</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../use-case_oafeat-script_fr/" class="nav-link">Cas d'utilisation</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -6264,7 +6267,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Modules importation</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Importation des modules</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
@@ -6299,20 +6302,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Paramètres</span>
 
-<span class="c1"># Coordinates</span>
+<span class="c1"># Coordonnées</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="mf">49.162676</span>
 <span class="n">long</span> <span class="o">=</span> <span class="o">-</span><span class="mf">121.958943</span>
 
-<span class="c1"># Buffer size in kilometres</span>
+<span class="c1"># Taille de la zone tampon en kilomètres</span>
 <span class="n">buffer</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="c1"># Number of months used to analyze historical data</span>
+<span class="c1"># Durée de la période temporelle désirée en mois</span>
 <span class="n">num_months</span> <span class="o">=</span> <span class="mi">3</span>
 
-<span class="c1"># ESPG code of the preferred projection to create the buffer</span>
-<span class="c1"># NAD83 / Statistics Canada Lambert</span>
+<span class="c1"># Code ESPG de la projection désirée pour crééer la zone tampon</span>
+<span class="c1"># NAD83 / Statistiques Canada Lambert</span>
 <span class="n">projection</span> <span class="o">=</span> <span class="mi">3347</span>
 </pre></div>
 
@@ -6330,17 +6333,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters formatting for the OGC API - Features request</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Formattage des paramètres pour la requête OGC API - Features</span>
 
-<span class="c1"># Bounding box a little bigger than buffer size (1 km ≈ 0.01°)</span>
+<span class="c1"># Zone de délimitation légèremeent plus grande que la taille de la zone tampon</span>
+<span class="c1"># Latitude: 1 km ≈ 0.0009° </span>
+<span class="c1"># Longitude (at the 49th parallel): 1 km ≈ 0.014°</span>
 <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="c1"># Time</span>
+<span class="c1"># Temps</span>
 <span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
 <span class="n">start_date</span> <span class="o">=</span> <span class="n">end_date</span> <span class="o">-</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -6368,18 +6373,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Retrieval of hydrometric stations data</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Récupération des données de stations hydrométriques</span>
 <span class="n">oafeat</span> <span class="o">=</span> <span class="n">Features</span><span class="p">(</span><span class="s2">&quot;https://api.weather.gc.ca/&quot;</span><span class="p">)</span>
 <span class="n">station_data</span> <span class="o">=</span> <span class="n">oafeat</span><span class="o">.</span><span class="n">collection_items</span><span class="p">(</span>
     <span class="s2">&quot;hydrometric-stations&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">STATUS_EN</span><span class="o">=</span><span class="s2">&quot;Active&quot;</span>
 <span class="p">)</span>
 
-<span class="c1"># Verification of the retrieved data</span>
+<span class="c1"># Vérification des données récupérées</span>
 <span class="k">if</span> <span class="s2">&quot;features&quot;</span> <span class="ow">in</span> <span class="n">station_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">station_data</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]:</span>
     <span class="n">station_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">station_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="s2">&quot;No hydrometric stations were found. Please verify the coordinates.&quot;</span>
+        <span class="s2">&quot;Aucune station hydrométrique n&#39;a été trouvée. &quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;Veuillez revérifier les coordonnées.&quot;</span>
     <span class="p">)</span>
 </pre></div>
 
@@ -6397,33 +6403,33 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># List of stations located inside the buffer zone</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Liste des stations situées dans la zone tampon</span>
 
-<span class="c1"># Accessing the hydrometric stations layer</span>
+<span class="c1"># Accéder à la couche de stations hydrométriques</span>
 <span class="n">driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
 <span class="n">data_source</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">station_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">layer</span> <span class="o">=</span> <span class="n">data_source</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
 
-<span class="c1"># Identification of the input spatial reference system (srs)</span>
+<span class="c1"># Identification du système de référence spatiale (srs) d&#39;entrée</span>
 <span class="n">srs_input</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">GetSpatialRef</span><span class="p">()</span>
 <span class="n">sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">srs_input</span><span class="p">))</span>
 <span class="n">epsg</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">srs_input</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span>
 
-<span class="c1"># Definition of the srs used to project data</span>
+<span class="c1"># Définition du srs utilisé pour projeter les données</span>
 <span class="n">srs_projected</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
 <span class="n">srs_projected</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
 
-<span class="c1"># Transformation from input srs to the prefered projection</span>
+<span class="c1"># Transformation du srs d&#39;entrée à la projection désirée</span>
 <span class="n">transform</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">srs_input</span><span class="p">,</span> <span class="n">srs_projected</span><span class="p">)</span>
 
-<span class="c1"># Creation of a buffer to select stations</span>
+<span class="c1"># Création de la zone tampon pour sélectionner les stations</span>
 <span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">)</span>
 <span class="n">point</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 <span class="n">point</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
-<span class="n">point_buffer</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">buffer</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># The value must be in meters</span>
+<span class="n">point_buffer</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">buffer</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># La valeur foit être en mètres</span>
 
-<span class="c1"># Selection of the stations in the buffer zone</span>
+<span class="c1"># Sélection des stations situées dans la zone tampon</span>
 <span class="n">stations</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">layer</span><span class="p">:</span>
@@ -6432,11 +6438,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">Intersects</span><span class="p">(</span><span class="n">point_buffer</span><span class="p">):</span>
         <span class="n">stations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">STATION_NUMBER</span><span class="p">)</span>
 
-<span class="c1"># Raising an error if no station were found</span>
+<span class="c1"># Générer une erreur si aucune station n&#39;est trouvée</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">stations</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;There are no hydrometric stations within </span><span class="si">{</span><span class="n">buffer</span><span class="si">}</span><span class="s2"> km&quot;</span>
-        <span class="o">+</span> <span class="s2">&quot; of the chosen coordinates. Please verify the coordinates.&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Aucune station hydrométrique n&#39;est située dans un rayon de </span><span class="si">{</span><span class="n">buffer</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">+</span> <span class="s2">&quot; km des coordonnées choisies. Veuillez vérifier les coordonnées.&quot;</span>
     <span class="p">)</span>
 </pre></div>
 
@@ -6464,28 +6470,29 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Retrieval of hydrometric data for each station</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Récupération des données hydrométriques pour chaque station</span>
 
-<span class="c1"># Dictionary that will contain a data frame for each station</span>
-<span class="c1"># with the historical daily water level for the time period</span>
+<span class="c1"># Dictionnaire qui contiendra une trame de données de niveau</span>
+<span class="c1"># d&#39;eau pour chaque station</span>
 <span class="n">hydrometric_data</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="c1"># List of stations with missing data</span>
+<span class="c1"># Liste des stations n&#39;ayant aucune donnée de niveau d&#39;eau </span>
 <span class="n">stations_without_data</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="c1"># Data retrieval and creation of the data frames</span>
+<span class="c1"># Récupération des données et création des trames de données</span>
 <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">:</span>
 
-    <span class="c1"># Retrieval of water level data</span>
+    <span class="c1"># Récupération des données de niveaux d&#39;eau</span>
     <span class="n">hydro_data</span> <span class="o">=</span> <span class="n">oafeat</span><span class="o">.</span><span class="n">collection_items</span><span class="p">(</span>
         <span class="s2">&quot;hydrometric-daily-mean&quot;</span><span class="p">,</span>
         <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
         <span class="n">datetime</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="n">STATION_NUMBER</span><span class="o">=</span><span class="n">station</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1"># Creation of a data frame if there is data for the chosen time period</span>
+    <span class="c1"># Création des trames de données s&#39;il y a </span>
+    <span class="c1"># des données pour la période choisie</span>
     <span class="k">if</span> <span class="n">hydro_data</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]:</span>
-        <span class="c1"># Creation of a dictionary in a format compatible with Pandas</span>
+        <span class="c1"># Création d&#39;un dictionnaire dans un format compatible avec Pandas</span>
         <span class="n">historical_data_format</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="s2">&quot;LATITUDE&quot;</span><span class="p">:</span> <span class="n">el</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">][</span><span class="s2">&quot;coordinates&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
@@ -6494,7 +6501,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">hydro_data</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
         <span class="p">]</span>
-        <span class="c1"># Creation of the data frame</span>
+        <span class="c1"># Création d&#39;une trame de données à partir du dictionnaire</span>
         <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
             <span class="n">historical_data_format</span><span class="p">,</span>
             <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
@@ -6507,39 +6514,40 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
             <span class="p">],</span>
         <span class="p">)</span>
         <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-        <span class="c1"># Adding the data frame to the hydrometric data dictionary</span>
+        <span class="c1"># Ajout de la trame de données au dictionnaire hydrometric_data</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-            <span class="c1"># Removing any rows without water level data at the</span>
-            <span class="c1"># end of the data frame</span>
+            <span class="c1"># Retrait des lignes à la fin de la trame de données qui ne</span>
+            <span class="c1"># contiennent pas de données</span>
             <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
                 <span class="n">historical_data_df</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
                     <span class="n">historical_data_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
                 <span class="p">)</span>
-            <span class="c1"># Creating an index with the date in a datetime format</span>
+            <span class="c1"># Création d&#39;un index avec la date dans un format datetime</span>
             <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
                 <span class="n">historical_data_df</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="n">historical_data_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;DATE&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">historical_data_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">historical_data_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">date</span>
-            <span class="c1"># Adding the data frame to the dictionary</span>
+            <span class="c1"># Ajout de la trame de données au dictionnaire</span>
             <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span> <span class="o">=</span> <span class="n">historical_data_df</span>
-        <span class="c1"># If all the data is NaN, the station will be removed from the dataset</span>
+        <span class="c1"># Si toutes les données sont des NaN, la station sera retirée</span>
+        <span class="c1"># du jeu de données</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">stations_without_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
-    <span class="c1"># If there is no data for the chosen time period, the station</span>
-    <span class="c1"># will be removed from the dataset</span>
+    <span class="c1"># Si aucune donnée n&#39;est disponible pour la période ciblée, la station</span>
+    <span class="c1"># sera retirée du jeu de données</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">stations_without_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
 
-<span class="c1"># Removing hydrometric stations with insufficient data from the station list</span>
+<span class="c1"># Retrait des stations sans données de niveau d&#39;eau de la liste des stations</span>
 <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stations_without_data</span><span class="p">:</span>
     <span class="n">stations</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
 
-<span class="c1"># Raising an error if no station is left in the list</span>
+<span class="c1"># Générer une erreur si la liste de stations est vide</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">stations</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;No water level data is available for this </span><span class="si">{</span><span class="n">num_months</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="o">+</span> <span class="s2">&quot; months period for the selected hydrometric stations.&quot;</span>
+        <span class="s2">&quot;Aucune données de niveau d&#39;eau n&#39;est disponible dans cette période&quot;</span>
+        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; de </span><span class="si">{</span><span class="n">num_months</span><span class="si">}</span><span class="s2"> mois pour les stations sélectionnées.&quot;</span>
     <span class="p">)</span>
 </pre></div>
 
@@ -6552,7 +6560,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Maintenant que toutes les trames de données sont prêtes, les données peuvent être visuallées sous la forme d'un graphique. Pandas peut être utilisé pour générer des graphiques interactifs sur Jupyter Notebook à l'aide du <a href="https://plotly.com/python/pandas-backend/">programme d'arrière plan Plotly</a>. Un menu déroulant peut également être ajouté dans Jupyter Notebook à l'aide de ipywidgets pour sélectionner la station hydrométrique à afficher sur le graphique.</p>
+<p>Maintenant que toutes les trames de données sont prêtes, les données peuvent être visuallées sous la forme d'un graphique. Pandas peut être utilisé pour générer des graphiques interactifs sur Jupyter Notebook à l'aide du <a href="https://plotly.com/python/pandas-backend/">programme d'arrière plan Plotly</a>. Un menu déroulant peut également être ajouté dans Jupyter Notebook à l'aide de <a href="https://ipywidgets.readthedocs.io/en/stable/">ipywidgets</a> pour sélectionner la station hydrométrique à afficher sur le graphique.</p>
 
 </div>
 </div>
@@ -6565,30 +6573,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Creation of an interactive plot with Pandas and Plotly</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Création d&#39;un graphique interactif avec Pandas et Plotly</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;plotly&quot;</span>
 
 
-<span class="c1"># Function to show the plot of the chosen hydrometric station</span>
+<span class="c1"># Fonction pour crééer le graphique de la station sélectionnée</span>
 <span class="k">def</span> <span class="nf">choose_station</span><span class="p">(</span><span class="n">station</span><span class="p">):</span>
-    <span class="c1"># Creation of the plot</span>
+    <span class="c1"># Création du graphique</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Water level at station &quot;</span>
+            <span class="s2">&quot;Niveau d&#39;eau de la station &quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="p">),</span>
         <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span>
         <span class="n">labels</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;DATE&quot;</span><span class="p">:</span> <span class="s2">&quot;Date&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Water level (m)&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="s2">&quot;Legend&quot;</span>
+            <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Date&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Niveau d&#39;eau (m)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="s2">&quot;Légende&quot;</span>
         <span class="p">},</span>
         <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;RoyalBlue&quot;</span><span class="p">],</span>
     <span class="p">)</span>
-    <span class="c1"># Updating plot parameters</span>
+    <span class="c1"># Modification des paramètres du graphique</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Daily mean&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Moyenne journalière&quot;</span><span class="p">,</span>
         <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines+markers&quot;</span><span class="p">,</span>
         <span class="n">hovertemplate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">&quot;x+name+y&quot;</span><span class="p">,</span>
@@ -6596,10 +6604,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
         <span class="n">hovermode</span><span class="o">=</span><span class="s2">&quot;x unified&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">tickformat</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fig</span>
 
 
-<span class="c1"># Creation of the dropdown menu widget</span>
+<span class="c1"># Création d&#39;un widget de menu déroulant</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">interact</span><span class="p">(</span><span class="n">choose_station</span><span class="p">,</span> <span class="n">station</span><span class="o">=</span><span class="n">stations</span><span class="p">)</span>
 </pre></div>
 
@@ -6622,13 +6631,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="b65f2d40-3398-4ac2-baa0-3af9f506b234"></div>
+<div id="3b235b76-7727-4970-b14b-49979684cc42"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#b65f2d40-3398-4ac2-baa0-3af9f506b234');
+var element = $('#3b235b76-7727-4970-b14b-49979684cc42');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "23f910c1eacb4497b52a0865ba07c4a9", "version_major": 2, "version_minor": 0}
+{"model_id": "dd98732217814d3792e96f9183d6d9ee", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6654,33 +6663,33 @@ var element = $('#b65f2d40-3398-4ac2-baa0-3af9f506b234');
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Creation of the table</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Création du tableau interactif</span>
 
-<span class="c1"># Option to show all rows</span>
+<span class="c1"># Option pour afficher toutes les lignes du tableau</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_rows&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
 
-<span class="c1"># Function to show the table of the chosen hydrometric station</span>
+<span class="c1"># Fonction pour afficher le tableau de la station sélectionnée</span>
 <span class="k">def</span> <span class="nf">choose_station_table</span><span class="p">(</span><span class="n">station</span><span class="p">):</span>
-    <span class="c1"># Creation of a HHTML widget to add a title to the table</span>
+    <span class="c1"># Création d&#39;un widget HTML pour ajouter un titre à la table</span>
     <span class="n">table_title</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span>
         <span class="n">value</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;&lt;h4&gt;Water level at station &quot;</span>
+            <span class="s2">&quot;&lt;h4&gt;Niveau d&#39;eau de la station &quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">)&lt;/h4&gt;&quot;</span>
         <span class="p">)</span>
     <span class="p">)</span>
-    <span class="c1"># Selecting the desired columns and changing the columns names</span>
+    <span class="c1"># Sélection des colonnes désirées et modification de leur nom</span>
     <span class="n">displayed_df</span> <span class="o">=</span> <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][[</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
         <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;LEVEL&quot;</span><span class="p">:</span> <span class="s2">&quot;Water level daily mean (m)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;LEVEL&quot;</span><span class="p">:</span> <span class="s2">&quot;Moyenne journalière du niveau d&#39;eau (m)&quot;</span><span class="p">,</span>
         <span class="p">}</span>
     <span class="p">)</span>
     <span class="n">displayed_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">displayed_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">table_title</span><span class="p">),</span> <span class="n">display</span><span class="p">(</span><span class="n">displayed_df</span><span class="p">)</span>
 
 
-<span class="c1"># Creation of the dropdown menu widget</span>
+<span class="c1"># Création d&#39;un widget de menu déroulant</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">interact</span><span class="p">(</span><span class="n">choose_station_table</span><span class="p">,</span> <span class="n">station</span><span class="o">=</span><span class="n">stations</span><span class="p">)</span>
 </pre></div>
 
@@ -6703,13 +6712,13 @@ var element = $('#b65f2d40-3398-4ac2-baa0-3af9f506b234');
 
  
  
-<div id="35c2a65c-ae30-4c66-b6f1-1347ee15adbf"></div>
+<div id="4303ed6b-5f3e-45da-b6ef-b4ba23ed0d86"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#35c2a65c-ae30-4c66-b6f1-1347ee15adbf');
+var element = $('#4303ed6b-5f3e-45da-b6ef-b4ba23ed0d86');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c55020590de049ab9eae5eefbd1c5029", "version_major": 2, "version_minor": 0}
+{"model_id": "8aa0f6268a3c459186b372245ad4f761", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6722,7 +6731,7 @@ var element = $('#35c2a65c-ae30-4c66-b6f1-1347ee15adbf');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, an interactive map can be created with ipyleaflet to display the most recent water level daily mean of all the hydrometric monitoring stations located within 100 km of Chilliwack.</p>
+<p>Finalement, une carte interactive peut être créée avec <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> pour afficher l'ensemble des stations hydrométriques situées dans un rayon de 100 km de Chilliwack ainsi que leurs dernières moyennes journalières disponibles pour la période de 3 mois sélectionnée.</p>
 
 </div>
 </div>
@@ -6735,21 +6744,21 @@ var element = $('#35c2a65c-ae30-4c66-b6f1-1347ee15adbf');
         
         
         <div class="input_area">
-            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Creation of the interactive map</span>
+            <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Création d&#39;une carte interactive</span>
 
-<span class="c1"># Latitude at the center of the station points (to center map)</span>
+<span class="c1"># Latitude au centre des points de station (pour centrer la carte)</span>
 <span class="n">latitudes</span> <span class="o">=</span> <span class="p">[</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s2">&quot;LATITUDE&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">]</span>
 <span class="n">center_lat</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">latitudes</span><span class="p">)</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">latitudes</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
 
-<span class="c1"># Parameters</span>
+<span class="c1"># Paramètres</span>
 <span class="n">center</span> <span class="o">=</span> <span class="p">[</span><span class="n">center_lat</span><span class="p">,</span> <span class="n">long</span><span class="p">]</span>
 <span class="n">zoom</span> <span class="o">=</span> <span class="mi">8</span>
 
-<span class="c1"># Map</span>
+<span class="c1"># Carte</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="n">basemap</span><span class="o">=</span><span class="n">basemaps</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">)</span>
 
-<span class="c1"># Adding hover information</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Hover over Hydrometric Stations&quot;</span><span class="p">)</span>
+<span class="c1"># Ajout des informations à afficher au passage de la souris</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Passez votre souris sur les stations pour plus d&#39;information&quot;</span><span class="p">)</span>
 <span class="n">html</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">margin</span> <span class="o">=</span> <span class="s2">&quot;0px 10px 10px 10px&quot;</span>
 <span class="n">control</span> <span class="o">=</span> <span class="n">WidgetControl</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">html</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">,</span> <span class="n">max_width</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
@@ -6759,19 +6768,19 @@ var element = $('#35c2a65c-ae30-4c66-b6f1-1347ee15adbf');
     <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">html</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;br&gt;&quot;</span>
-            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Station ID: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">STATION_NUMBER</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;ID de la station: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">STATION_NUMBER</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Date: </span><span class="si">{</span><span class="n">marker</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;br&gt;&quot;</span>
-            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Water level: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">LEVEL</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Niveau d&#39;eau: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">LEVEL</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m&quot;</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">callback</span>
 
 
-<span class="c1"># Adding scale and full screen control</span>
+<span class="c1"># Ajout d&#39;une barre d&#39;échelle et d&#39;un contrôle du zoom</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">ScaleControl</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;bottomleft&quot;</span><span class="p">))</span>
 <span class="n">m</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">FullScreenControl</span><span class="p">())</span>
 
-<span class="c1"># Adding a marker to the map for each hydrometric station</span>
+<span class="c1"># Ajout d&#39;un marqueur à la carte pour chaque station hydrométrique</span>
 <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stations</span><span class="p">:</span>
     <span class="n">latest_data</span> <span class="o">=</span> <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">icon</span> <span class="o">=</span> <span class="n">AwesomeIcon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tint&quot;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span><span class="s2">&quot;darkblue&quot;</span><span class="p">)</span>
@@ -6783,7 +6792,7 @@ var element = $('#35c2a65c-ae30-4c66-b6f1-1347ee15adbf');
     <span class="n">station_marker</span><span class="o">.</span><span class="n">on_mouseover</span><span class="p">(</span><span class="n">get_callback</span><span class="p">(</span><span class="n">latest_data</span><span class="p">))</span>
     <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">station_marker</span><span class="p">)</span>
 
-<span class="c1"># Display the map</span>
+<span class="c1"># Affichage de la carte</span>
 <span class="n">display</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 
@@ -6806,13 +6815,13 @@ var element = $('#35c2a65c-ae30-4c66-b6f1-1347ee15adbf');
 
  
  
-<div id="afe62fec-f389-49b9-8bc8-a8110d4f3663"></div>
+<div id="737df5b4-001b-4f21-a367-a16a3855f5fc"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#afe62fec-f389-49b9-8bc8-a8110d4f3663');
+var element = $('#737df5b4-001b-4f21-a367-a16a3855f5fc');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "1a64ff6597f24d57b0b802a8764de52c", "version_major": 2, "version_minor": 0}
+{"model_id": "b919a88acd6c4bd6acd5d30cca7096e7", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6825,7 +6834,7 @@ var element = $('#afe62fec-f389-49b9-8bc8-a8110d4f3663');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water level of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve geospatial data from GeoMet-OGC-API and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
+<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy a maintenant un bon aperçu du niveau d'eau des étendues d'eau situées près de Chilliwack. Cette information lui sera utile dans la gestion des activitées de sa compagnie d'excursions en bateau et de sports nautiques. Suite à la lecture de ce cas d'utilisation, vous devriez être en mesure d'utiliser Python pour récupérer des données géospatiales à partir de GeoMet-OGC-API et d'afficher ces données dans différents formats interactifs (graphique, tableau et carte). Ce cas d'utilisation peu être adapté selon vos besoins en modifiant les paramètres ou les étapes de traitement des données.</p>
 
 </div>
 </div>
