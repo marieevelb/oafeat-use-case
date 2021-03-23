@@ -63,7 +63,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#use-case-monitoring-water-levels-with-graphs-and-maps" class="nav-link">Use Case: Monitoring Water Levels with Graphs and Maps</a>
+            <li class="nav-item" data-level="1"><a href="#use-case-retrieving-and-displaying-hydrometric-data" class="nav-link">Use Case: Retrieving and Displaying Hydrometric Data</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
@@ -6240,7 +6240,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_fr.ipynb">En français</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
 <p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python (interactive version)</p>
-<h1 id="use-case-monitoring-water-levels-with-graphs-and-maps">Use Case: Monitoring Water Levels with Graphs and Maps<a class="anchor-link" href="#Use-Case:-Monitoring-Water-Levels-with-Graphs-and-Maps">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in GeoMet-OGC-API offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON output file can then be used for display or further data processing. This use case will show you how you can:</p>
+<h1 id="use-case-retrieving-and-displaying-hydrometric-data">Use Case: Retrieving and Displaying Hydrometric Data<a class="anchor-link" href="#Use-Case:-Retrieving-and-Displaying-Hydrometric-Data">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in GeoMet-OGC-API offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON output file can then be used for display or further data processing. This use case will show you how you can:</p>
 <ul>
 <li>Query and retrieve vector geospatial data from GeoMet-OGC-API with <a href="https://www.python.org/">Python</a></li>
 <li>Display time series data in graphic and tabular format</li>
@@ -6339,7 +6339,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
 <span class="c1"># The buffer needs to be transformed in degrees to get</span>
 <span class="c1"># the coordinates of the corners of the bounding box:</span>
-<span class="c1"># Latitude: 1 km ≈ 0.0009° </span>
+<span class="c1"># Latitude: 1 km ≈ 0.009° </span>
 <span class="c1"># Longitude (at the 49th parallel): 1 km ≈ 0.014°</span>
 <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span>
     <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
@@ -6628,13 +6628,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="59f3beba-2d7b-4c9a-844c-e66b2109ec1a"></div>
+<div id="54476a20-7552-4bfb-a3da-796e34727380"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#59f3beba-2d7b-4c9a-844c-e66b2109ec1a');
+var element = $('#54476a20-7552-4bfb-a3da-796e34727380');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0e689a34b7e04db4a536a14edfb282cf", "version_major": 2, "version_minor": 0}
+{"model_id": "0fe2c2a48d754ce2aad982634cf5104a", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6709,13 +6709,13 @@ var element = $('#59f3beba-2d7b-4c9a-844c-e66b2109ec1a');
 
  
  
-<div id="c8c52254-dcdf-46b8-96f4-2d5689d728e5"></div>
+<div id="1e627272-8833-4253-9e17-b231065d0f1d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#c8c52254-dcdf-46b8-96f4-2d5689d728e5');
+var element = $('#1e627272-8833-4253-9e17-b231065d0f1d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c5b301d820e441819e0ce4b7b708a8e1", "version_major": 2, "version_minor": 0}
+{"model_id": "fab33c153bdd40a3b1f3db49816c33ab", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6812,13 +6812,13 @@ var element = $('#c8c52254-dcdf-46b8-96f4-2d5689d728e5');
 
  
  
-<div id="6c14542d-71ad-4a84-9632-393828421e34"></div>
+<div id="bd71dd2d-89cb-4c46-b105-e27e798a5600"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#6c14542d-71ad-4a84-9632-393828421e34');
+var element = $('#bd71dd2d-89cb-4c46-b105-e27e798a5600');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "195e6539130d4c5b9f3ee674a399ce93", "version_major": 2, "version_minor": 0}
+{"model_id": "6dde54efde15446184fafbe7e4b7bd86", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6831,7 +6831,7 @@ var element = $('#6c14542d-71ad-4a84-9632-393828421e34');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water levels of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve and process geospatial data from GeoMet-OGC-API and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
+<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water levels of the rivers and lakes near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve and process geospatial data from GeoMet-OGC-API and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
 
 </div>
 </div>
