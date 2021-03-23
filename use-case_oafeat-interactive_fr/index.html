@@ -6240,17 +6240,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_en.ipynb">In English</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
 <p><a href="https://eccc-msc.github.io/open-data/readme_fr/">TdM</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_efr/">Aperçu de l'utilisation</a> &gt; Requêtes OGC API - Features avec Python (version interactive)</p>
-<h1 id="cas-dutilisation-suivi-du-niveau-de-leau-avec-geomet-ogc-api">Cas d'utilisation: Suivi du niveau de l'eau avec GeoMet-OGC-API<a class="anchor-link" href="#Cas-d'utilisation:-Suivi-du-niveau-de-l'eau-avec-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Les données hydrométriques du Service météorologique du Canada (SMC) et d'Environnement et Changement climatique Canada (ECCC) peuvent être facilement accédés via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. Les services web <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_fr/#ogc-api-features">OGC API - Features</a> disponibles dans <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> permettent d'effectuer des requêtes de données géospatiales vectorielles et de récupérer ces données en format GeoJSON. Les fichiers GeoJSON peuvent ensuite être utilisés directement pour réaliser des analyses et afficher les données sur des cartes ou peuvent être soumis à des étapes supplémentaires de traitement de données. Ce cas d'utilisation démontre comment:</p>
+<h1 id="cas-dutilisation-suivi-du-niveau-de-leau-avec-geomet-ogc-api">Cas d'utilisation: Suivi du niveau de l'eau avec GeoMet-OGC-API<a class="anchor-link" href="#Cas-d'utilisation:-Suivi-du-niveau-de-l'eau-avec-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Les données hydrométriques du Service météorologique du Canada (SMC) et d'Environnement et Changement climatique Canada (ECCC) peuvent être facilement accédées via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. Les services web <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_fr/#ogc-api-features">OGC API - Features</a> disponibles dans <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> permettent d'effectuer des requêtes de données géospatiales vectorielles et de récupérer ces données en format GeoJSON. Les fichiers GeoJSON peuvent ensuite être utilisés directement pour réaliser des analyses et afficher les données sur des cartes ou peuvent être soumis à des étapes supplémentaires de traitement de données. Ce cas d'utilisation démontre comment:</p>
 <ul>
 <li>Effectuer des requêtes et récupérer des données géospatiales vectorielles disponibles dans <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> à l'aide de <a href="https://www.python.org/">Python</a></li>
 <li>Afficher des données de séries temporelles en format graphique et tabulaire</li>
 <li>Créer une carte interactive présentant les données géospatiales récupérées</li>
 </ul>
 <p>Ce cas d'utilisation est disponible en deux versions. Cette version-ci a été concue spécifiquement pour Jupyter Notebook et tire avantage du niveau supérieur d'interactivité offert par cette application. Elle comprend entre autres des menus déroulants pour sélectionner la valeur de certaines variables, un graphique interactif comportant une plus grande variété de fonctions et une carte interactive basée sur Leaflet. Comme certaines bibliothèques de programmation utilisées dans cette version telles que ipywidgets ne sont pas conçues pour être utilisées hors de Jupyter Notebook, <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_fr/">une autre version de ce cas d'utilisation</a> présente un script qui est adapté pour être exécuté directement dans un terminal ou dans un environnement de développement intégré.</p>
-<p>Pour exécuter l'entièreté de ce carnet, cliquez sur le symbole ⏩️ ou sélectionnez l'option Cell -&gt; Run All dans la barre de menu.</p>
-<h2 id="creation-dun-outil-pour-suivre-levolution-du-niveau-de-leau">Cr&#233;ation d'un outil pour suivre l'&#233;volution du niveau de l'eau<a class="anchor-link" href="#Cr&#233;ation-d'un-outil-pour-suivre-l'&#233;volution-du-niveau-de-l'eau">&#182;</a></h2><p>Cathy dirige une compagnie d'excursions en bateau et de sports nautiques à Chilliwack en Colombie-Britannique. Elle aimerait suivre le niveau de l'eau de certaines stations hydrométriques situés près de Chilliwack afin de guider la gestion des activités de sa copagnie. Elle aimerait obtenir:</p>
+<p>Pour exécuter l'entièreté de ce carnet, cliquez sur le symbole ⏩️ ou sélectionnez l'option <em>Cell</em> -&gt; <em>Run All</em> dans la barre de menu.</p>
+<h2 id="creation-dun-outil-pour-suivre-levolution-du-niveau-de-leau">Cr&#233;ation d'un outil pour suivre l'&#233;volution du niveau de l'eau<a class="anchor-link" href="#Cr&#233;ation-d'un-outil-pour-suivre-l'&#233;volution-du-niveau-de-l'eau">&#182;</a></h2><p>Cathy dirige une compagnie d'excursions en bateau et de sports nautiques à Chilliwack en Colombie-Britannique. Elle aimerait suivre le niveau de l'eau de certaines stations hydrométriques situés près de Chilliwack afin de guider la gestion des activités de sa compagnie. Elle aimerait obtenir:</p>
 <ul>
-<li>La moyenne journalière du niveau d'eau pour une période de 3 mois pour toutes les stations hydrométriques situées dans un rayon de 100 km de Chilliwack.</li>
+<li>La moyenne journalière du niveau d'eau pour une période de trois mois pour toutes les stations hydrométriques situées dans un rayon de 100 km de Chilliwack.</li>
 <li>Une vue graphique et tabulaire des moyennes journalières du niveau d'eau de cette période</li>
 <li>Une carte interactive présentant les stations hydrométriques situées dans un rayon de 100 km de Chilliwack et la moyenne journalière de niveau d'eau la plus récente de ces stations pour la période temporelle sélectionnée</li>
 </ul>
@@ -6360,7 +6360,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ensuite, les <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">données des stations hydrométriques</a> disponibles sur GeoMet-OGC-API peuvent être récupérés à l'aide d'<a href="https://geopython.github.io/OWSLib/">OWSLib</a>. Comme l'utilisation d'une zone de délimitation à l'aide du paramètre <code>bbox</code> n'est pas aussi précis que l'utilisation d'une zone tampon ronde, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> peut être utilisé pour sélectionner uniquement les stations hydromtriques situées strictement dans un rayon de 100 km de Chilliwack.</p>
+<p>Ensuite, les <a href="https://geo.weather.gc.ca/geomet/features/collections/hydrometric-stations">données des stations hydrométriques</a> disponibles sur GeoMet-OGC-API peuvent être récupérées à l'aide d'<a href="https://geopython.github.io/OWSLib/">OWSLib</a>. Comme l'utilisation d'une zone de délimitation à l'aide du paramètre <code>bbox</code> n'est pas aussi précise que l'utilisation d'une zone tampon ronde, <a href="https://gdal.org/api/index.html#python-api">GDAL</a> peut être utilisé pour sélectionner uniquement les stations hydrométriques situées strictement dans un rayon de 100 km de Chilliwack.</p>
 
 </div>
 </div>
@@ -6455,8 +6455,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Une fois les stations hydrométriques situées dans un rayon de 100 km de Chilliwack identifiées, les données de niveau d'eau pour la période de 3 mois peuvent êtres récupérées pour chaque station.</p>
-<p>Les moyennes journalières du niveau d'eau de la période de 3 mois sera utilisée pour créer une trame de données du niveau d'eau journalier historique pour chaque station à l'aide de <a href="https://pandas.pydata.org/">Pandas</a>. Pour faciliter la manipulation des données, l'ensemble des trames de données sera rassemblée dans un dictionnaire Python. Ces trames de données seront utilisées pour créer des graphiques et des tableaux interactifs affichant les données historiques de niveau d'eau ainsi qu'une carte interactive présentant les données les plus récentes pour la période temporelle sélectionnée.</p>
+<p>Une fois les stations hydrométriques situées dans un rayon de 100 km de Chilliwack identifiées, les données de niveau d'eau pour la période de trois mois peuvent êtres récupérées pour chaque station.</p>
+<p>Les moyennes journalières du niveau d'eau de la période de trois mois sera utilisée pour créer une trame de données du niveau d'eau journalier historique pour chaque station à l'aide de <a href="https://pandas.pydata.org/">Pandas</a>. Pour faciliter la manipulation des données, l'ensemble des trames de données sera rassemblée dans un dictionnaire Python. Ces trames de données seront utilisées pour créer des graphiques et des tableaux interactifs affichant les données historiques de niveau d'eau ainsi qu'une carte interactive présentant les données les plus récentes pour la période temporelle sélectionnée.</p>
 <p>Les stations n'ayant aucune donnée de niveau d'eau disponible durant la période choisie seront retirées du jeu de données.</p>
 
 </div>
@@ -6560,7 +6560,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Maintenant que toutes les trames de données sont prêtes, les données peuvent être visuallées sous la forme d'un graphique. Pandas peut être utilisé pour générer des graphiques interactifs sur Jupyter Notebook à l'aide du <a href="https://plotly.com/python/pandas-backend/">programme d'arrière plan Plotly</a>. Un menu déroulant peut également être ajouté dans Jupyter Notebook à l'aide de <a href="https://ipywidgets.readthedocs.io/en/stable/">ipywidgets</a> pour sélectionner la station hydrométrique à afficher sur le graphique.</p>
+<p>Maintenant que toutes les trames de données sont prêtes, les données peuvent être visualisées sous la forme d'un graphique. Pandas peut être utilisé pour générer des graphiques interactifs sur Jupyter Notebook à l'aide du <a href="https://plotly.com/python/pandas-backend/">programme d'arrière plan Plotly</a>. Un menu déroulant peut également être ajouté dans Jupyter Notebook à l'aide de <a href="https://ipywidgets.readthedocs.io/en/stable/">ipywidgets</a> pour sélectionner la station hydrométrique à afficher sur le graphique.</p>
 
 </div>
 </div>
@@ -6631,13 +6631,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="9250e897-73b7-4082-831d-a626b4f0633a"></div>
+<div id="eade8ddc-8ab4-47e6-a79b-b9a94b1fcfb8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9250e897-73b7-4082-831d-a626b4f0633a');
+var element = $('#eade8ddc-8ab4-47e6-a79b-b9a94b1fcfb8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "dd98732217814d3792e96f9183d6d9ee", "version_major": 2, "version_minor": 0}
+{"model_id": "90420bcbe80c4a6d95402d7615909d2f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6712,13 +6712,13 @@ var element = $('#9250e897-73b7-4082-831d-a626b4f0633a');
 
  
  
-<div id="bddd3011-5831-400e-b6d9-5653665ef6ee"></div>
+<div id="d330cef4-581f-410f-acb7-c82f7cc1f807"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#bddd3011-5831-400e-b6d9-5653665ef6ee');
+var element = $('#d330cef4-581f-410f-acb7-c82f7cc1f807');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8aa0f6268a3c459186b372245ad4f761", "version_major": 2, "version_minor": 0}
+{"model_id": "cf3db4ffd24944c18f6e6492afe4a9ee", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6815,13 +6815,13 @@ var element = $('#bddd3011-5831-400e-b6d9-5653665ef6ee');
 
  
  
-<div id="89439ba8-93b3-4dda-8a40-cdf761da064f"></div>
+<div id="ba7bd7b9-e1fd-472b-86a7-962f12b83f73"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#89439ba8-93b3-4dda-8a40-cdf761da064f');
+var element = $('#ba7bd7b9-e1fd-472b-86a7-962f12b83f73');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "b919a88acd6c4bd6acd5d30cca7096e7", "version_major": 2, "version_minor": 0}
+{"model_id": "c5154a168e8c4da0a79d77d996ce127f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 

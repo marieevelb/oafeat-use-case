@@ -63,13 +63,13 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#use-case-tracking-water-level-with-geomet-ogc-api" class="nav-link">Use case: Tracking water level with GeoMet-OGC-API</a>
+            <li class="nav-item" data-level="1"><a href="#use-case-monitoring-water-levels-with-graphs-and-maps" class="nav-link">Use Case: Monitoring Water Levels with Graphs and Maps</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#creation-of-a-tool-to-track-water-level" class="nav-link">Creation of a tool to track water level</a>
+            <li class="nav-item" data-level="2"><a href="#creation-of-a-tool-to-monitor-water-levels" class="nav-link">Creation of a tool to monitor water levels</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -6240,18 +6240,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_fr.ipynb">En français</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
 <p><a href="https://eccc-msc.github.io/open-data/readme_en/">TOC</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_en/">Usage overview</a> &gt; OGC API - Features request in Python (interactive version)</p>
-<h1 id="use-case-tracking-water-level-with-geomet-ogc-api">Use case: Tracking water level with GeoMet-OGC-API<a class="anchor-link" href="#Use-case:-Tracking-water-level-with-GeoMet-OGC-API">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON file can then be used for display or further data processing. This use case will show you how you can:</p>
+<h1 id="use-case-monitoring-water-levels-with-graphs-and-maps">Use Case: Monitoring Water Levels with Graphs and Maps<a class="anchor-link" href="#Use-Case:-Monitoring-Water-Levels-with-Graphs-and-Maps">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Hydrometric data from the Meteorological Service of Canada (MSC) and Environment and Climate Change Canada (ECCC) can be easily accessed via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. The <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_en/#ogc-api-features">OGC API - Features</a> web services available in GeoMet-OGC-API offer the capability to query vector geospatial data and retrieve it in a GeoJSON format. The GeoJSON output file can then be used for display or further data processing. This use case will show you how you can:</p>
 <ul>
-<li>Query and retrieve vector geospatial data from <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a> with <a href="https://www.python.org/">Python</a></li>
+<li>Query and retrieve vector geospatial data from GeoMet-OGC-API with <a href="https://www.python.org/">Python</a></li>
 <li>Display time series data in graphic and tabular format</li>
 <li>Create an interactive map to display geospatial data</li>
 </ul>
-<p>This use case comes in two different versions. This version is conceived to be used on Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values, an interactive plot with a variety of controls and an interactive map based on Leaflet. As some libraries used in this version like ipywidgets are not conceived to be used outside of Jupyter Notebook, the <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_en/">other version of this use case</a> presents a script that is tailored to be run in a terminal or an IDE.</p>
+<p>This use case comes in two different versions. This version is conceived to be used in a Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values, an interactive plot with a variety of controls and an interactive map based on Leaflet. As some libraries used in this version like ipywidgets are not conceived to be used outside of a Jupyter Notebook, the <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_en/">other version of this use case</a> presents a script that is tailored to be run in a terminal or an IDE.</p>
 <p>To run the entire notebook, click on the ⏩️ symbol or select the Cell -&gt; Run All option in the menu bar.</p>
-<h2 id="creation-of-a-tool-to-track-water-level">Creation of a tool to track water level<a class="anchor-link" href="#Creation-of-a-tool-to-track-water-level">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water level of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
+<h2 id="creation-of-a-tool-to-monitor-water-levels">Creation of a tool to monitor water levels<a class="anchor-link" href="#Creation-of-a-tool-to-monitor-water-levels">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water levels of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
-<li>The daily water level of a 3 months period for all hydrometric stations located within 100 km of the city of Chilliwack</li>
-<li>Graphic and tabular views that present the daily mean water level of that 3 months period</li>
+<li>The daily mean water levels of a three months period for all hydrometric stations located within 100 km of the city of Chilliwack</li>
+<li>Graphic and tabular views that present the daily mean water levels of that three months period</li>
 <li>An interactive map that displays the hydrometric stations located within 100 km of the city of Chilliwack and the most recent daily mean water level of these stations in the determined time period</li>
 </ul>
 <p>To achieve this, the first step is to import the necessary Python modules and to select the desired request parameters.</p>
@@ -6271,7 +6271,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
 <span class="kn">from</span> <span class="nn">ipyleaflet</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AwesomeIcon</span><span class="p">,</span>
     <span class="n">basemaps</span><span class="p">,</span>
@@ -6304,15 +6303,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters</span>
 
-<span class="c1"># Coordinates</span>
+<span class="c1"># Coordinates of Chilliwack</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="mf">49.162676</span>
 <span class="n">long</span> <span class="o">=</span> <span class="o">-</span><span class="mf">121.958943</span>
 
 <span class="c1"># Buffer size in kilometres</span>
 <span class="n">buffer</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="c1"># Number of months used to analyze historical data</span>
-<span class="n">num_months</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1"># Start and end of the time period for which the data will be retrieved</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
 
 <span class="c1"># ESPG code of the preferred projection to create the buffer</span>
 <span class="c1"># NAD83 / Statistics Canada Lambert</span>
@@ -6335,7 +6335,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters formatting for the OGC API - Features request</span>
 
-<span class="c1"># Bounding box a little bigger than buffer size </span>
+<span class="c1"># Bounding box a little bigger than buffer size</span>
+
+<span class="c1"># The buffer needs to be transformed in degrees to get</span>
+<span class="c1"># the coordinates of the corners of the bounding box:</span>
 <span class="c1"># Latitude: 1 km ≈ 0.0009° </span>
 <span class="c1"># Longitude (at the 49th parallel): 1 km ≈ 0.014°</span>
 <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span>
@@ -6345,10 +6348,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="c1"># Time</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="n">end_date</span> <span class="o">-</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># Formatting of the selected time period</span>
+<span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 
         </div>
@@ -6409,18 +6410,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="n">data_source</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">station_data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">layer</span> <span class="o">=</span> <span class="n">data_source</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
 
-<span class="c1"># Identification of the input spatial reference system (srs)</span>
-<span class="n">srs_input</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">GetSpatialRef</span><span class="p">()</span>
-<span class="n">sr</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">srs_input</span><span class="p">))</span>
-<span class="n">epsg</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">srs_input</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span>
+<span class="c1"># Identification of the input spatial reference system (SRS)</span>
+<span class="n">SRS_input</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">GetSpatialRef</span><span class="p">()</span>
+<span class="n">SR</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">SRS_input</span><span class="p">))</span>
+<span class="n">epsg</span> <span class="o">=</span> <span class="n">SR</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">SRS_input</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span>
 
-<span class="c1"># Definition of the srs used to project data</span>
-<span class="n">srs_projected</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
-<span class="n">srs_projected</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+<span class="c1"># Definition of the SRS used to project data</span>
+<span class="n">SRS_projected</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">SRS_projected</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
 
-<span class="c1"># Transformation from input srs to the prefered projection</span>
-<span class="n">transform</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">srs_input</span><span class="p">,</span> <span class="n">srs_projected</span><span class="p">)</span>
+<span class="c1"># Transformation from input SRS to the prefered projection</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">SRS_input</span><span class="p">,</span> <span class="n">SRS_projected</span><span class="p">)</span>
 
 <span class="c1"># Creation of a buffer to select stations</span>
 <span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">)</span>
@@ -6454,8 +6455,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data for a 3 months period can be retrieved for each station.</p>
-<p>The daily mean water level of the 3 months period will be used to create a data frame of the historical daily water level for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create interactive graphic and tabular views of the historical daily water level of the hydrometric monitoring stations located within 100 km of Chilliwack. They will also be used to display the hydrometric stations on a map with their most recent daily water level data for the time period.</p>
+<p>Once the hydrometric monitoring stations located within 100 km of Chilliwack are identified, the water level data for a three months period can be retrieved for each station.</p>
+<p>The daily mean water levels of the three months period will be used to create a data frame for each station with <a href="https://pandas.pydata.org/">Pandas</a>. To facilitate the data manipulations, all the data frames will be gathered in a Python dictionary. These data frames will be used to create interactive graphic and tabular views of the historical daily mean water levels of the hydrometric monitoring stations located within 100 km of Chilliwack. They will also be used to display the hydrometric stations on a map with their most recent daily mean water level data for the time period.</p>
 <p>Stations that do not have water level data available in the desired time period will be removed from the dataset.</p>
 
 </div>
@@ -6471,8 +6472,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Retrieval of hydrometric data for each station</span>
 
-<span class="c1"># Dictionary that will contain a data frame for each station</span>
-<span class="c1"># with the historical daily water level for the time period</span>
+<span class="c1"># Dictionary that will contain a data frame for each station with</span>
+<span class="c1"># the historical daily mean water levels for the time period</span>
 <span class="n">hydrometric_data</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="c1"># List of stations with no water level data</span>
@@ -6557,7 +6558,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that all the data frames are ready, the data can be visualized in a graphic view. Pandas can be used to generate interactive plots on Jupyter Notebook with the <a href="https://plotly.com/python/pandas-backend/">Plotly backend</a>. A dropdown menu can be added in Jupyter Notebook with <a href="https://ipywidgets.readthedocs.io/en/stable/">ipywidgets</a> to select the desired hydrometric monitoring station.</p>
+<p>Now that all the data frames are ready, the data can be visualized in a graphic view. Pandas can be used to generate interactive plots in a Jupyter Notebook with the <a href="https://plotly.com/python/pandas-backend/">Plotly backend</a>. A dropdown menu can be added in a Jupyter Notebook with <a href="https://ipywidgets.readthedocs.io/en/stable/">ipywidgets</a> to select the desired hydrometric monitoring station.</p>
 
 </div>
 </div>
@@ -6579,7 +6580,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="c1"># Creation of the plot</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s2">&quot;LEVEL&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Water level at station &quot;</span>
+            <span class="s2">&quot;Water levels at station &quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="p">),</span>
@@ -6627,13 +6628,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="d32c58e2-98aa-4b25-b125-462890f29d01"></div>
+<div id="59f3beba-2d7b-4c9a-844c-e66b2109ec1a"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#d32c58e2-98aa-4b25-b125-462890f29d01');
+var element = $('#59f3beba-2d7b-4c9a-844c-e66b2109ec1a');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8241be42b34144f6b243e7fc6f7624c1", "version_major": 2, "version_minor": 0}
+{"model_id": "0e689a34b7e04db4a536a14edfb282cf", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6670,7 +6671,7 @@ var element = $('#d32c58e2-98aa-4b25-b125-462890f29d01');
     <span class="c1"># Creation of a HTML widget to add a title to the table</span>
     <span class="n">table_title</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span>
         <span class="n">value</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;&lt;h4&gt;Water level at station &quot;</span>
+            <span class="s2">&quot;&lt;h4&gt;Water levels at station &quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hydrometric_data</span><span class="p">[</span><span class="n">station</span><span class="p">][</span><span class="s1">&#39;STATION_NAME&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">)&lt;/h4&gt;&quot;</span>
         <span class="p">)</span>
@@ -6708,13 +6709,13 @@ var element = $('#d32c58e2-98aa-4b25-b125-462890f29d01');
 
  
  
-<div id="764032d1-ed67-4de6-81ea-3701e4c42dc3"></div>
+<div id="c8c52254-dcdf-46b8-96f4-2d5689d728e5"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#764032d1-ed67-4de6-81ea-3701e4c42dc3');
+var element = $('#c8c52254-dcdf-46b8-96f4-2d5689d728e5');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "59dbded896604a2ea0f4d6c1d9bad995", "version_major": 2, "version_minor": 0}
+{"model_id": "c5b301d820e441819e0ce4b7b708a8e1", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6727,7 +6728,7 @@ var element = $('#764032d1-ed67-4de6-81ea-3701e4c42dc3');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, an interactive map can be created with <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> to display the most recent water level daily mean of all the hydrometric monitoring stations located within 100 km of Chilliwack for the selected 3 months period.</p>
+<p>Finally, an interactive map can be created with <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> to display the most recent water level daily mean of all the hydrometric monitoring stations located within 100 km of Chilliwack for the selected three months period.</p>
 
 </div>
 </div>
@@ -6811,13 +6812,13 @@ var element = $('#764032d1-ed67-4de6-81ea-3701e4c42dc3');
 
  
  
-<div id="245ffcc1-b1e8-4d29-b03e-4f1c85f5285b"></div>
+<div id="6c14542d-71ad-4a84-9632-393828421e34"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#245ffcc1-b1e8-4d29-b03e-4f1c85f5285b');
+var element = $('#6c14542d-71ad-4a84-9632-393828421e34');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "766844f1ba3c46e493a60c3f791ff8bb", "version_major": 2, "version_minor": 0}
+{"model_id": "195e6539130d4c5b9f3ee674a399ce93", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6830,7 +6831,7 @@ var element = $('#245ffcc1-b1e8-4d29-b03e-4f1c85f5285b');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water level of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve geospatial data from GeoMet-OGC-API and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
+<h2 id="conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Cathy has now a good overview of the water levels of the bodies of water near her. This information will help her plan her boat tours and water sports company activities. After completing this use case, you should be able to use Python to retrieve and process geospatial data from GeoMet-OGC-API and to display data in different interactive formats (plot, table and map). This use case can be adapted to fit your needs by changing the parameters or modifying the data processing steps.</p>
 
 </div>
 </div>
