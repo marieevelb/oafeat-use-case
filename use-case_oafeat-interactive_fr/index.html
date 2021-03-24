@@ -6250,7 +6250,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p>Pour exécuter l'entièreté de ce carnet, cliquez sur le symbole ⏩️ ou sélectionnez l'option <em>Cell</em> -&gt; <em>Run All</em> dans la barre de menu.</p>
 <h2 id="creation-dun-outil-pour-suivre-levolution-des-niveaux-deau">Cr&#233;ation d'un outil pour suivre l'&#233;volution des niveaux d'eau<a class="anchor-link" href="#Cr&#233;ation-d'un-outil-pour-suivre-l'&#233;volution-des-niveaux-d'eau">&#182;</a></h2><p>Cathy dirige une compagnie d'excursions en bateau et de sports nautiques à Chilliwack en Colombie-Britannique. Elle aimerait suivre le niveau d'eau de certaines stations hydrométriques situés près de Chilliwack afin de guider la gestion des activités de sa compagnie. Elle aimerait obtenir:</p>
 <ul>
-<li>Les moyennes journalières de niveau d'eau pour une période de trois mois pour toutes les stations hydrométriques situées dans un rayon de 100 km de Chilliwack.</li>
+<li>Les moyennes journalières de niveau d'eau pour une période de trois mois pour toutes les stations hydrométriques situées dans un rayon de 100 km de Chilliwack</li>
 <li>Une vue graphique et tabulaire des moyennes journalières de niveau d'eau de cette période</li>
 <li>Une carte interactive présentant les stations hydrométriques situées dans un rayon de 100 km de Chilliwack et la moyenne journalière de niveau d'eau la plus récente de ces stations pour la période temporelle sélectionnée</li>
 </ul>
@@ -6271,7 +6271,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
 <span class="kn">from</span> <span class="nn">ipyleaflet</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AwesomeIcon</span><span class="p">,</span>
     <span class="n">basemaps</span><span class="p">,</span>
@@ -6337,19 +6336,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
         <div class="input_area">
             <div class=" highlight highlight-ipynb hl-python"><pre><span></span><span class="c1"># Formattage des paramètres pour la requête OGC API - Features</span>
 
-<span class="c1"># Zone de délimitation légèremeent plus grande que la taille de la zone tampon</span>
+<span class="c1"># Zone de délimitation légèrement plus grande que la taille de la zone tampon</span>
 
 <span class="c1"># La taille de la zone tampon doit être transformée en degrés afin d&#39;obtenir</span>
 <span class="c1"># les coordonnées des coins de la zone de délimitation:</span>
 <span class="c1"># Latitude: 1 km ≈ 0.009° </span>
-<span class="c1"># Longitude (at the 49th parallel): 1 km ≈ 0.014°</span>
+<span class="c1"># Longitude (au 49e parallèle): 1 km ≈ 0.014°</span>
 <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span>
     <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
     <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">-</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
     <span class="nb">str</span><span class="p">(</span><span class="n">long</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">),</span>
     <span class="nb">str</span><span class="p">(</span><span class="n">lat</span> <span class="o">+</span> <span class="n">buffer</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">),</span>
 <span class="p">]</span>
-
 
 <span class="c1"># Formattage de la période temporelle sélectionnée</span>
 <span class="n">time</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -6420,18 +6418,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <span class="n">epsg</span> <span class="o">=</span> <span class="n">SR</span><span class="o">.</span><span class="n">GetAuthorityCode</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">SRS_input</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">epsg</span><span class="p">))</span>
 
-<span class="c1"># Définition du srs utilisé pour projeter les données</span>
+<span class="c1"># Définition du SRS utilisé pour projeter les données</span>
 <span class="n">SRS_projected</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
 <span class="n">SRS_projected</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
 
-<span class="c1"># Transformation du srs d&#39;entrée à la projection désirée</span>
+<span class="c1"># Transformation du SRS d&#39;entrée à la projection désirée</span>
 <span class="n">transform</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">CoordinateTransformation</span><span class="p">(</span><span class="n">SRS_input</span><span class="p">,</span> <span class="n">SRS_projected</span><span class="p">)</span>
 
 <span class="c1"># Création de la zone tampon pour sélectionner les stations</span>
 <span class="n">point</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="o">.</span><span class="n">wkbPoint</span><span class="p">)</span>
 <span class="n">point</span><span class="o">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 <span class="n">point</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
-<span class="n">point_buffer</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">buffer</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># La valeur foit être en mètres</span>
+<span class="n">point_buffer</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="n">buffer</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># La valeur doit être en mètres</span>
 
 <span class="c1"># Sélection des stations situées dans la zone tampon</span>
 <span class="n">stations</span> <span class="o">=</span> <span class="p">[]</span>
@@ -6460,7 +6458,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Une fois les stations hydrométriques situées dans un rayon de 100 km de Chilliwack identifiées, les données de niveau d'eau pour la période de trois mois peuvent êtres récupérées pour chaque station.</p>
-<p>Les moyennes journalières de niveau d'eau de la période de trois mois sera utilisée pour créer une trame de données pour chaque station à l'aide de <a href="https://pandas.pydata.org/">Pandas</a>. Pour faciliter la manipulation des données, l'ensemble des trames de données sera rassemblée dans un dictionnaire Python. Ces trames de données seront utilisées pour créer des graphiques et des tableaux interactifs affichant les données historiques de niveau d'eau ainsi qu'une carte interactive présentant les données les plus récentes pour la période temporelle sélectionnée.</p>
+<p>Les moyennes journalières de niveau d'eau de la période de trois mois seront utilisées pour créer une trame de données pour chaque station à l'aide de <a href="https://pandas.pydata.org/">Pandas</a>. Pour faciliter la manipulation des données, l'ensemble des trames de données sera rassemblée dans un dictionnaire Python. Ces trames de données seront utilisées pour créer des graphiques et des tableaux interactifs affichant les données historiques de niveau d'eau ainsi qu'une carte interactive présentant les données les plus récentes pour la période temporelle sélectionnée.</p>
 <p>Les stations n'ayant aucune donnée de niveau d'eau disponible durant la période choisie seront retirées du jeu de données.</p>
 
 </div>
@@ -6635,13 +6633,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="48adc4e6-ecc9-4796-b131-1ba7c8bb51be"></div>
+<div id="6cb8acd5-5919-4c72-b6fc-7d8d81d84220"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#48adc4e6-ecc9-4796-b131-1ba7c8bb51be');
+var element = $('#6cb8acd5-5919-4c72-b6fc-7d8d81d84220');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "e3d5938993e945ec8634cabc4efd2c03", "version_major": 2, "version_minor": 0}
+{"model_id": "e08b2411f47f4539a8f99c279a6046ed", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6675,7 +6673,7 @@ var element = $('#48adc4e6-ecc9-4796-b131-1ba7c8bb51be');
 
 <span class="c1"># Fonction pour afficher le tableau de la station sélectionnée</span>
 <span class="k">def</span> <span class="nf">choose_station_table</span><span class="p">(</span><span class="n">station</span><span class="p">):</span>
-    <span class="c1"># Création d&#39;un widget HTML pour ajouter un titre à la table</span>
+    <span class="c1"># Création d&#39;un widget HTML pour ajouter un titre au tableau</span>
     <span class="n">table_title</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span>
         <span class="n">value</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;&lt;h4&gt;Niveaux d&#39;eau de la station &quot;</span>
@@ -6716,13 +6714,13 @@ var element = $('#48adc4e6-ecc9-4796-b131-1ba7c8bb51be');
 
  
  
-<div id="dc631699-653e-44dd-9c4f-5746c3ca82b9"></div>
+<div id="052b85e0-2868-40a1-95eb-b553d1337056"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#dc631699-653e-44dd-9c4f-5746c3ca82b9');
+var element = $('#052b85e0-2868-40a1-95eb-b553d1337056');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "90fb5272dc394827a6acb04b7ea89d4d", "version_major": 2, "version_minor": 0}
+{"model_id": "90a22a2969cb426bb54c0dee2985a594", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6735,7 +6733,7 @@ var element = $('#dc631699-653e-44dd-9c4f-5746c3ca82b9');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finalement, une carte interactive peut être créée avec <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> pour afficher l'ensemble des stations hydrométriques situées dans un rayon de 100 km de Chilliwack ainsi que leurs dernières moyennes journalières disponibles pour la période de 3 mois sélectionnée.</p>
+<p>Finalement, une carte interactive peut être créée avec <a href="https://ipyleaflet.readthedocs.io/">ipyleaflet</a> pour afficher l'ensemble des stations hydrométriques situées dans un rayon de 100 km de Chilliwack ainsi que leur dernière moyenne journalière disponible pour la période de trois mois sélectionnée.</p>
 
 </div>
 </div>
@@ -6828,13 +6826,13 @@ var element = $('#dc631699-653e-44dd-9c4f-5746c3ca82b9');
 
  
  
-<div id="6a11fb36-50d0-437c-9403-bb6e9223871f"></div>
+<div id="3284f282-3557-488a-98a4-f42a5b8276a1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#6a11fb36-50d0-437c-9403-bb6e9223871f');
+var element = $('#3284f282-3557-488a-98a4-f42a5b8276a1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "0d2c38bdb5d7494cb0f53f3d793aedba", "version_major": 2, "version_minor": 0}
+{"model_id": "913f2d08489c4cbfa3e09f409d5ee8e9", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6850,13 +6848,13 @@ var element = $('#6a11fb36-50d0-437c-9403-bb6e9223871f');
 
  
  
-<div id="a877af20-eccf-4015-b3c5-fd6a2ece15e1"></div>
+<div id="2fb5cb63-ff95-4053-885f-b8ae75a40e6b"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#a877af20-eccf-4015-b3c5-fd6a2ece15e1');
+var element = $('#2fb5cb63-ff95-4053-885f-b8ae75a40e6b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "990a79c35fcb40d799f9a29dcbc5fa60", "version_major": 2, "version_minor": 0}
+{"model_id": "3037732b0a5e425e8a2c74b8d5312f8f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 

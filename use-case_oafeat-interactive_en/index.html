@@ -6246,7 +6246,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <li>Display time series data in graphic and tabular format</li>
 <li>Create an interactive map to display geospatial data</li>
 </ul>
-<p>This use case comes in two different versions. This version is conceived to be used in a Jupyter Notebook and includes more interactive features like dropdown menus to choose variables' values, an interactive plot with a variety of controls and an interactive map based on Leaflet. As some libraries used in this version like ipywidgets are not conceived to be used outside of a Jupyter Notebook, the <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_en/">other version of this use case</a> presents a script that is tailored to be run in a terminal or an IDE.</p>
+<p>This use case comes in two different versions. This version is conceived to be used in a Jupyter Notebook and includes more interactive features like dropdown menus to choose the value of the variables, an interactive plot with a variety of controls and an interactive map based on Leaflet. As some libraries used in this version like ipywidgets are not conceived to be used outside of a Jupyter Notebook, the <a href="https://marieevelb.github.io/oafeat-use-case/use-case_oafeat-script_en/">other version of this use case</a> presents a script that is designed to be run in a terminal or an IDE.</p>
 <p>To run the entire notebook, click on the ⏩️ symbol or select the Cell -&gt; Run All option in the menu bar.</p>
 <h2 id="creation-of-a-tool-to-monitor-water-levels">Creation of a tool to monitor water levels<a class="anchor-link" href="#Creation-of-a-tool-to-monitor-water-levels">&#182;</a></h2><p>Cathy runs a boat tours and water sports company in Chilliwack, British-Columbia. She would like to track the water levels of a few hydrometric stations near her city to guide the management of the company's activities. She would like to have:</p>
 <ul>
@@ -6537,7 +6537,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
     <span class="k">else</span><span class="p">:</span>
         <span class="n">stations_without_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
 
-<span class="c1"># Removing hydrometric stations with insufficient data from the station list</span>
+<span class="c1"># Removing hydrometric stations without water level data from the station list</span>
 <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">stations_without_data</span><span class="p">:</span>
     <span class="n">stations</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">station</span><span class="p">)</span>
 
@@ -6628,13 +6628,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="a77cd723-1748-491b-a147-9731e78c07aa"></div>
+<div id="1c0c6b88-3779-4df2-82e5-bdf624a676ab"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#a77cd723-1748-491b-a147-9731e78c07aa');
+var element = $('#1c0c6b88-3779-4df2-82e5-bdf624a676ab');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c72f1316f5f9430f83df4db57312a7e4", "version_major": 2, "version_minor": 0}
+{"model_id": "eede3994ab87498f98674f96d3391174", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6709,13 +6709,13 @@ var element = $('#a77cd723-1748-491b-a147-9731e78c07aa');
 
  
  
-<div id="b010263e-c6c1-48db-a1d1-7ca57ad7124e"></div>
+<div id="3540f5c4-3dc5-4730-a78f-7e0bebdee4f5"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#b010263e-c6c1-48db-a1d1-7ca57ad7124e');
+var element = $('#3540f5c4-3dc5-4730-a78f-7e0bebdee4f5');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "1218de8fe31440379e2d5b993734db34", "version_major": 2, "version_minor": 0}
+{"model_id": "1bed14e068be47b49feba454d79132a6", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6821,13 +6821,13 @@ var element = $('#b010263e-c6c1-48db-a1d1-7ca57ad7124e');
 
  
  
-<div id="8bb77720-6ad7-4ce3-84e1-9191cd157a10"></div>
+<div id="17d81aaf-f1c0-4499-93c5-43074a3e0ba8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#8bb77720-6ad7-4ce3-84e1-9191cd157a10');
+var element = $('#17d81aaf-f1c0-4499-93c5-43074a3e0ba8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "e9f4a2176ec540e385dd96e6754aa59c", "version_major": 2, "version_minor": 0}
+{"model_id": "a77681e09e6244769c245185458cc88f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6843,13 +6843,13 @@ var element = $('#8bb77720-6ad7-4ce3-84e1-9191cd157a10');
 
  
  
-<div id="0b21a218-92fd-4453-a95a-9cd4676d3116"></div>
+<div id="0d462d2c-544d-41cf-90bf-3f6097aa9214"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#0b21a218-92fd-4453-a95a-9cd4676d3116');
+var element = $('#0d462d2c-544d-41cf-90bf-3f6097aa9214');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "47e072c9ba584d1092a1634b6da90e1c", "version_major": 2, "version_minor": 0}
+{"model_id": "b91f5dcd787246b1bc0c58edd171f2b1", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
