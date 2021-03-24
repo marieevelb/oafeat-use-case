@@ -6240,7 +6240,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p><a href="https://mybinder.org/v2/gh/marieevelb/oafeat-use-case/main?filepath=docs%2Fuse-case_oafeat-interactive_en.ipynb">In English</a></p>
 <p><img src="https://eccc-msc.github.io/open-data/img_eccc-logo.png" alt="ECCC logo"></p>
 <p><a href="https://eccc-msc.github.io/open-data/readme_fr/">TdM</a> &gt; <a href="https://eccc-msc.github.io/open-data/usage/readme_efr/">Aperçu de l'utilisation</a> &gt; Requêtes OGC API - Features avec Python (version interactive)</p>
-<h1 id="cas-dutilisation-recuperation-et-affichage-de-donnees-hydrometriques">Cas d'utilisation: R&#233;cup&#233;ration et affichage de donn&#233;es hydrom&#233;triques<a class="anchor-link" href="#Cas-d'utilisation:-R&#233;cup&#233;ration-et-affichage-de-donn&#233;es-hydrom&#233;triques">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Les données hydrométriques du Service météorologique du Canada (SMC) et d'Environnement et Changement climatique Canada (ECCC) peuvent être facilement accédées via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. Les services web <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_fr/#ogc-api-features">OGC API - Features</a> disponibles dans GeoMet-OGC-API permettent d'effectuer des requêtes de données géospatiales vectorielles et de récupérer ces données en format GeoJSON. Les fichiers GeoJSON peuvent ensuite être utilisés directement pour réaliser des analyses et afficher les données sur des cartes ou peuvent être soumis à des étapes supplémentaires de traitement de données. Ce cas d'utilisation démontre comment:</p>
+<h1 id="cas-dutilisation-recuperation-et-affichage-de-donnees-hydrometriques">Cas d'utilisation: R&#233;cup&#233;ration et affichage de donn&#233;es hydrom&#233;triques<a class="anchor-link" href="#Cas-d'utilisation:-R&#233;cup&#233;ration-et-affichage-de-donn&#233;es-hydrom&#233;triques">&#182;</a></h1><h2 id="introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>Les données hydrométriques du Service météorologique du Canada (SMC) d'Environnement et Changement climatique Canada (ECCC) peuvent être facilement accédées via <a href="https://api.weather.gc.ca/">GeoMet-OGC-API</a>. Les services web <a href="https://eccc-msc.github.io/open-data/msc-geomet/web-services_fr/#ogc-api-features">OGC API - Features</a> disponibles dans GeoMet-OGC-API permettent d'effectuer des requêtes de données géospatiales vectorielles et de récupérer ces données en format GeoJSON. Les fichiers GeoJSON peuvent ensuite être utilisés directement pour réaliser des analyses et afficher les données sur des cartes ou peuvent être soumis à des étapes supplémentaires de traitement de données. Ce cas d'utilisation démontre comment:</p>
 <ul>
 <li>Effectuer des requêtes et récupérer des données géospatiales vectorielles disponibles dans GeoMet-OGC-API à l'aide de <a href="https://www.python.org/">Python</a></li>
 <li>Afficher des données de séries temporelles en format graphique et tabulaire</li>
@@ -6635,13 +6635,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 
  
  
-<div id="0627253b-5d14-41dd-bc82-5c6981230a22"></div>
+<div id="5d7cd7a7-5719-45ce-9fb3-8e45adf782d8"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#0627253b-5d14-41dd-bc82-5c6981230a22');
+var element = $('#5d7cd7a7-5719-45ce-9fb3-8e45adf782d8');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "bd4706980770470594e273284f9abc79", "version_major": 2, "version_minor": 0}
+{"model_id": "e3d5938993e945ec8634cabc4efd2c03", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6716,13 +6716,13 @@ var element = $('#0627253b-5d14-41dd-bc82-5c6981230a22');
 
  
  
-<div id="bf4322d7-dfd8-4b63-9d33-c626ea0b97fb"></div>
+<div id="71f439dd-e43e-42ed-8314-3b55e9df0238"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#bf4322d7-dfd8-4b63-9d33-c626ea0b97fb');
+var element = $('#71f439dd-e43e-42ed-8314-3b55e9df0238');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "50b61244824943ac8b020b3920ff0f19", "version_major": 2, "version_minor": 0}
+{"model_id": "90fb5272dc394827a6acb04b7ea89d4d", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -6760,6 +6760,15 @@ var element = $('#bf4322d7-dfd8-4b63-9d33-c626ea0b97fb');
 
 <span class="c1"># Carte</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="n">basemap</span><span class="o">=</span><span class="n">basemaps</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">)</span>
+
+<span class="c1"># Ajout d&#39;un titre</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;&lt;h4&gt;Moyenne journalière du niveau d&#39;eau la plus récente pour &quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;la période se terminant le </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&lt;/h4&gt;&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 
 <span class="c1"># Ajout des informations à afficher au passage de la souris</span>
 <span class="n">html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Passez votre souris sur les stations pour plus d&#39;information&quot;</span><span class="p">)</span>
@@ -6819,13 +6828,35 @@ var element = $('#bf4322d7-dfd8-4b63-9d33-c626ea0b97fb');
 
  
  
-<div id="f6614513-e644-45b9-8432-72a2a8e77714"></div>
+<div id="8ba08f26-c39c-4a8f-9f33-1b1e91b3e32c"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#f6614513-e644-45b9-8432-72a2a8e77714');
+var element = $('#8ba08f26-c39c-4a8f-9f33-1b1e91b3e32c');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "20cb4d35ea4c4b049a899215cbcb8643", "version_major": 2, "version_minor": 0}
+{"model_id": "0d2c38bdb5d7494cb0f53f3d793aedba", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="9f81d5e2-e69a-4b0d-879b-155dd84424c0"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#9f81d5e2-e69a-4b0d-879b-155dd84424c0');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "990a79c35fcb40d799f9a29dcbc5fa60", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
